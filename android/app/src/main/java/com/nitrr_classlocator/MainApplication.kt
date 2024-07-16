@@ -1,4 +1,4 @@
-package com.nitrr_classlocator
+package com.classlocator.nitrr
 
 import android.app.Application
 import com.facebook.react.PackageList

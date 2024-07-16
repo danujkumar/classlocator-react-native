@@ -1,4 +1,4 @@
-package com.nitrr_classlocator
+package com.classlocator.nitrr
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

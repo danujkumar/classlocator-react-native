@@ -74,9 +74,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.nitrr_classlocator"
+    namespace "com.classlocator.nitrr"
     defaultConfig {
-        applicationId "com.nitrr_classlocator"
+        applicationId "com.classlocator.nitrr"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
