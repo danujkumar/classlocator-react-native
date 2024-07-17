@@ -43,7 +43,7 @@ const screenOptions = {
   },
 };
 
-export default function BottomTabs(props) {
+export default function BottomTabs() {
   const Tab = createBottomTabNavigator();
   return (
     <View
@@ -57,7 +57,6 @@ export default function BottomTabs(props) {
         <Tab.Screen
           name="Home_Tab"
           component={HomeScreen}
-          initialParams={{props}}
           options={{
             tabBarIcon: ({ focused }) => {
               return (

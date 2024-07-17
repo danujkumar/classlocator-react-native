@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   StyleSheet,
@@ -14,40 +14,46 @@ import {
 import WebView from "react-native-webview";
 import { useNavigation } from "@react-navigation/native";
 import Back from "../../../components/Back";
-import Cross from "../../../components/moods/Cross";
 let canGoBack = false;
 const showToast = (message) => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
 };
 
-function containsOrder(sentence) {
-  return (
-    sentence.includes("order-summary") || sentence.includes("order-received")
-  );
-}
-
 export default function Heartitout(props) {
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
-  const [timeout, setTime] = useState(null);
 
   const onNavigationStateChange = (navState) => {
-    canGoBack = navState.canGoBack;
-    if (containsOrder(navState.url) && loading == false) {
-      showToast("Order Received");
-      setCross(true);
-      setTime(
-        setTimeout(() => {
-          setHomes("webview");
-          pathing("webview");
-          navigation.navigate("Home_Tab");
-        }, 10000)
-      );
-    } else {
-      console.log("Not hit yet");
-    }
+    console.log(navState.url)
   };
+
+
   const webViewRef = useRef(null);
+
+
+  const keyValuePairs = {
+    mode: 'S',
+    rotate: '0',
+    map_no: '0',
+    serviceUse: 'X',
+  };
+
+
+  useEffect(() => {
+    if (webViewRef.current) {
+      const sessionStorageScript = `
+        (function() {
+          ${Object.entries(keyValuePairs)
+            .map(([key, value]) => `sessionStorage.setItem('${key}', '${value}');`)
+            .join('')}
+        })();
+      `;
+      webViewRef.current.injectJavaScript(sessionStorageScript);
+    }
+  }, [keyValuePairs]);
+
+
+
   const backHandler = () => {
     if (canGoBack) goBack();
     else navigation.goBack();
@@ -68,16 +74,19 @@ export default function Heartitout(props) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if(props.route.params == null || props.route.params == undefined)
       showToast("The link is broken, please reload the app.")
   }, [])
+
+
   
-
-  const [cross, setCross] = useState(false);
-
+  
   return (
     <View style={styles.container}>
+
+
+
       {loading ? (
         <View
           style={{
@@ -98,16 +107,11 @@ export default function Heartitout(props) {
       ) : (
         <></>
       )}
+
+
       <TouchableOpacity
         onPress={() => {
-          if (cross) {
-            clearInterval(timeout);
-            pathing("webview");
-            setHomes("webview");
-            navigation.navigate("Home_Tab");
-          } else {
-            navigation.goBack();
-          }
+          navigation.goBack();
         }}
         activeOpacity={0.8}
         style={{
@@ -123,8 +127,10 @@ export default function Heartitout(props) {
           borderRadius: wp(10),
         }}
       >
-        {cross ? <Cross simple={true} /> : <Back color={"#455A64"} />}
+        <Back color={"#455A64"} />
       </TouchableOpacity>
+
+      
       <WebView
         onLoadStart={() => {
           setLoading(true);

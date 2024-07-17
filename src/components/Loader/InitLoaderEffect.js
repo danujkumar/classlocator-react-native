@@ -14,8 +14,8 @@ import {
 } from 'react-native-responsive-screen';
 import {useNavigation} from '@react-navigation/native';
 import {theme} from '../../theme';
-import StaticServer from '@dr.pogodin/react-native-static-server';
 import RNFS from 'react-native-fs';
+import { useAuth } from '../../utils/auth';
 
 const showToast = message => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -36,10 +36,9 @@ export default function InitLoaderEffect() {
     BackHandler.removeEventListener('hardwareBackPress', backHandler);
   });
 
-  let server = null;
   const initializer = async () => {
     const ASSETS_FOLDER_NAME = 'build';
-    const DOCUMENT_FOLDER_PATH = `${RNFS.DocumentDirectoryPath}/${ASSETS_FOLDER_NAME}`;
+    const DOCUMENT_FOLDER_PATH = `${RNFS.CachesDirectoryPath}/${ASSETS_FOLDER_NAME}`;
 
     const copyAssetsFolderContents = async (sourcePath, targetPath) => {
       try {
@@ -68,21 +67,11 @@ export default function InitLoaderEffect() {
     copyAssetsFolderContents(ASSETS_FOLDER_NAME, DOCUMENT_FOLDER_PATH);
   };
 
-  const startServer = async () => {
-      const path = `${RNFS.DocumentDirectoryPath}/build`;
-      server = new StaticServer(9090, path, {localOnly: true});
-
-      try {
-        const link = await server.start();
-        navigation.navigate('main',{link:link})
-      } catch (error) {
-        console.error('Failed to start server:', error);
-      }
-  };
+  const {startServer} = useAuth();
 
   useEffect(() => {
     initializer().then(()=>{
-      startServer();
+      navigation.navigate("main")
     }).catch((err)=>{
       console.log(err)
     })
