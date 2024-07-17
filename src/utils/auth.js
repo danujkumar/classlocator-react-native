@@ -1,5 +1,5 @@
 import React, {createContext, useContext} from 'react';
-import {ToastAndroid} from 'react-native';
+import {ToastAndroid, Linking} from 'react-native';
 import StaticServer from '@dr.pogodin/react-native-static-server';
 import RNFS from 'react-native-fs';
 
@@ -36,17 +36,13 @@ export const AuthProvider = ({children}) => {
   let server = null;
 
   const startServer = async link => {
-    
     let isRun = false;
 
-    if(server != null)
-    {
+    if (server != null) {
       isRun = await server.isRunning();
-    }
-    else isRun = false;
+    } else isRun = false;
 
-    if(isRun == true) server.stop();
-
+    if (isRun == true) server.stop();
 
     const path = `${RNFS.CachesDirectoryPath}/build`;
     server = new StaticServer(9090, path, {localOnly: true});
@@ -62,10 +58,19 @@ export const AuthProvider = ({children}) => {
     return link == 'main' ? `${address}/index.html` : `${address}/maps.html`;
   };
 
+  const openLinks = link => {
+    Linking.openURL(link)
+      .then(responsive => {
+        console.log(responsive);
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
     <AuthContext.Provider
       value={{
         startServer,
+        openLinks
       }}>
       {children}
     </AuthContext.Provider>

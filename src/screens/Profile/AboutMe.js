@@ -5,6 +5,8 @@ import {
   View,
   Text,
   Image,
+  TouchableOpacity,
+  Linking,
 } from 'react-native';
 import React, {useState} from 'react';
 import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
@@ -15,6 +17,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {theme} from '../../theme';
 import Coffee from '../../components/Coffee';
+import { useAuth } from '../../utils/auth';
 
 export default function AboutMe() {
   const navigation = useNavigation();
@@ -22,6 +25,8 @@ export default function AboutMe() {
     navigation.goBack();
     return true;
   };
+
+  const {openLinks} = useAuth();
 
   navigation.addListener('focus', () => {
     BackHandler.addEventListener('hardwareBackPress', backHandler);
@@ -46,25 +51,363 @@ export default function AboutMe() {
             style={{
               height: hp(21),
               width: wp(100),
-              backgroundColor: 'red',
-          }}></View>
+              backgroundColor: '#1DE099',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{fontSize: wp(8.5), marginTop: hp(4)}}>Who We Are</Text>
 
-          <Text style={{fontSize: wp(6.4)}}>Our Team</Text>
+            <TouchableOpacity
+              onPress={()=>{openLinks('https://github.com/danujkumar/classlocator-react-native.git')}}
+              style={{
+                width: wp(40),
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: hp(1.5),
+              }}>
+              <Text style={{textAlign: 'center', fontSize: wp(5)}}>
+                Contribute{'\n'}
+                on
+              </Text>
+              <Image
+                source={require('../../../assets/images/Vector.png')}
+                style={{
+                  height: wp(11),
+                  width: wp(11),
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <Text style={{fontSize: wp(6.4), color: '#595959', marginTop: hp(2)}}>
+          Meet the Team
+
+          </Text>
 
           <View
             style={{
-              backgroundColor: 'red',
-              height: hp(27),
+              backgroundColor: 'transparent',
+              height: hp(32),
               width: wp(92),
-            }}></View>
+              marginTop: hp(1.5),
+              display: 'flex',
+              // justifyContent:'center',
+              paddingVertical: hp(1),
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
 
-          <View style={{justifyContent:'center'}}>
+            {/* Anuj sections starts here */}
+            <View
+              style={{
+                width: wp(86),
+                height: hp(6),
+                borderWidth: wp(0.3),
+                borderColor: '#A3A3A3',
+                borderRadius: wp(2),
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                display: 'flex',
+                paddingHorizontal: wp(3.2),
+                flexDirection: 'row',
+                backgroundColor:'rgba(217,217,217,0.2)'
+              }}>
+              <Text style={{color: 'black', fontSize: wp(5)}}>
+                D Anuj Kumar
+              </Text>
+              <View style={{display: 'flex', flexDirection: 'row'}}>
+                <TouchableOpacity
+                  onPressIn={()=>{openLinks('https://github.com/danujkumar')}}
+                  style={{marginLeft: wp(2)}}>
+                  <Image
+                    source={require('../../../assets/images/github.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}
+                  onPress={()=>{
+                    openLinks('mailto:anuj.as828@gmail.com')
+                  }}
+                >
+                  <Image
+                    source={require('../../../assets/images/mail.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}
+                  onPress={()=>{
+                    openLinks('https://www.instagram.com/anuj_singh828/')
+                  }}
+                >
+                  <Image
+                    source={require('../../../assets/images/insta.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}
+                  onPress={()=>{
+                    openLinks('https://www.linkedin.com/in/d-anuj-kumar/')
+                  }}
+                >
+                  <Image
+                    source={require('../../../assets/images/linkedin.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* Harsh section start here */}
+            <View
+              style={{
+                width: wp(86),
+                height: hp(6),
+                borderWidth: wp(0.3),
+                borderColor: '#A3A3A3',
+                borderRadius: wp(2),
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                display: 'flex',
+                paddingHorizontal: wp(3.2),
+                flexDirection: 'row',
+                backgroundColor:'rgba(217,217,217,0.2)'
+              }}>
+              <Text style={{color: 'black', fontSize: wp(5)}}>
+                Harsh Dewangan
+              </Text>
+              <View style={{display: 'flex', flexDirection: 'row'}}>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/github.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/mail.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/insta.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/linkedin.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* Aniket sections start here */}
+            <View
+              style={{
+                width: wp(86),
+                height: hp(6),
+                borderWidth: wp(0.3),
+                borderColor: '#A3A3A3',
+                borderRadius: wp(2),
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                display: 'flex',
+                paddingHorizontal: wp(3.2),
+                flexDirection: 'row',
+                backgroundColor:'rgba(217,217,217,0.2)'
+              }}>
+              <Text style={{color: 'black', fontSize: wp(5)}}>
+                Aniket Kumar
+              </Text>
+              <View style={{display: 'flex', flexDirection: 'row'}}>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/github.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/mail.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/insta.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/linkedin.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* Mohit section start here */}
+            <View
+              style={{
+                width: wp(86),
+                height: hp(6),
+                borderWidth: wp(0.3),
+                borderColor: '#A3A3A3',
+                borderRadius: wp(2),
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                display: 'flex',
+                paddingHorizontal: wp(3.2),
+                flexDirection: 'row',
+                backgroundColor:'rgba(217,217,217,0.2)'
+              }}>
+              <Text style={{color: 'black', fontSize: wp(5)}}>
+                Mohit Doraiburu
+              </Text>
+              <View style={{display: 'flex', flexDirection: 'row'}}>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/github.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/mail.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/insta.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                  <Image
+                    source={require('../../../assets/images/linkedin.png')}
+                    style={{
+                      height: wp(6),
+                      width: wp(6),
+                    }}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+          </View>
+
+          <View
+            style={{
+              height: hp(17),
+              width: wp(90),
+              marginTop: hp(3),
+              // backgroundColor: 'red',
+              borderRadius: wp(4),
+              backgroundColor: 'rgba(99, 230, 190, 0.2)',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text
+              style={{
+                color: 'black',
+                width: wp(76),
+                textAlign: 'center',
+                fontSize: wp(4.1),
+                marginBottom: wp(3)
+              }}>
+              Class Locator Gives You The Most Simplest & Quickest Way to Find
+              the Pathway to Your ClassRoom
+            </Text>
+
+            <Text
+              style={{
+                color: 'black',
+                width: wp(76),
+                textAlign: 'center',
+                fontSize: wp(4.0),
+                fontWeight: 'bold'
+              }}>
+              Application Version : 1.0
+            </Text>
+
+            <Text
+              style={{
+                color: 'black',
+                width: wp(76),
+                textAlign: 'center',
+                fontSize: wp(4.0),
+                fontWeight: 'bold'
+              }}>
+              Engine Version : 2.0
+            </Text>
+          </View>
+
+          <View style={{justifyContent: 'center', marginTop: hp(3)}}>
             <Coffee />
             <Image
               source={require('../../../assets/images/cof.png')}
-              style={{height: wp(14), width: wp(13), position:'absolute', right: wp(9),}}
+              style={{
+                height: wp(14),
+                width: wp(13),
+                position: 'absolute',
+                right: wp(9),
+              }}
             />
           </View>
+
+
         </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>

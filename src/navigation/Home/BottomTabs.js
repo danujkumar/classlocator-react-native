@@ -117,7 +117,7 @@ export default function BottomTabs() {
                       color: focused ? "#01818C" : "#455A64",
                     }}
                   >
-                    Profile
+                    About Us
                   </Text>
                 </View>
                 //  </TouchableOpacity>

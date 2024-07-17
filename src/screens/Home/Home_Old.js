@@ -15,9 +15,12 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
 import {useAuth} from '../../utils/auth';
+import {useState} from 'react';
+import Share from 'react-native-share';
 
 import {theme} from '../../theme';
 import HomePageBanner from '../../components/HomePageBanner';
+import PingCard from '../../components/PingCard';
 
 const Btn = () => {
   const {startServer} = useAuth();
@@ -31,14 +34,29 @@ const Btn = () => {
           navigation.navigate('webview', {link: res, map_no: 0});
         });
       }}>
-      <Text style={styles.btnText}>Welcome to Classlocator</Text>
+      <Text style={styles.btnText}>Search & Go</Text>
     </TouchableOpacity>
   );
+};
+
+const ShareMessage = text => {
+  const shareMessage = async text => {
+    try {
+      const options = {
+        message: text,
+      };
+      await Share.open(options);
+    } catch (error) {
+      console.log('Error sharing:', error);
+    }
+  };
+  shareMessage(text);
 };
 
 export default function HomeScreen() {
   const navigation = useNavigation();
   const {startServer} = useAuth();
+  const [wnew, showNew] = useState(false);
   const backHandler = () => {
     BackHandler.exitApp();
     return true;
@@ -51,6 +69,10 @@ export default function HomeScreen() {
   navigation.addListener('blur', () => {
     BackHandler.removeEventListener('hardwareBackPress', backHandler);
   });
+
+  const closeNew = close => {
+    showNew(close);
+  };
 
   return (
     <GestureHandlerRootView>
@@ -96,6 +118,7 @@ export default function HomeScreen() {
               <Btn />
             </View>
           </View>
+
           {/* Content */}
           <View
             style={[
@@ -154,10 +177,10 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </View>
 
+          {wnew ? <PingCard handleClose={closeNew} /> : <></>}
+
           <TouchableOpacity
-            onPress={() => {
-              // navigation.navigate("webview", product);
-            }}
+            disabled={true}
             className="flex-col items-center"
             style={[
               styles.cardContainer,
@@ -166,11 +189,33 @@ export default function HomeScreen() {
             <View style={[styles.packageCard, {backgroundColor: '#EAF7FC'}]}>
               <View
                 // className="flex-col justify-between items-start "
-                style={{height: hp(8), display:'flex', flexDirection:'column', justifyContent: 'space-between'}}>
-                <Text style={styles.cardText}>Whtats New</Text>
-                <View style={styles.Btn}>
-                  <Text style={styles.btnText2}>Discover Now</Text>
-                </View>
+                style={{
+                  height: hp(8),
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}>
+                <Text style={styles.cardText}>What's New</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    // navigation.navigate("webview", product);
+                    showNew(true);
+                  }}>
+                  <View style={styles.Btn}>
+                    <Text style={styles.btnText2}>Find it out</Text>
+                  </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+                    ShareMessage(
+                      `Hey! 🚀 Check out the new and improved ClassLocator app! Find emergency services instantly, even offline. Download now and share with your friends and family: [link]`,
+                    );
+                  }}>
+                  <View style={styles.Btn}>
+                    <Text style={styles.btnText2}>Share</Text>
+                  </View>
+                </TouchableOpacity>
               </View>
               <Image
                 source={require('../../../assets/images/neww.png')}
@@ -190,10 +235,15 @@ export default function HomeScreen() {
             ]}>
             <View style={[styles.packageCard, {backgroundColor: '#EAF7FC'}]}>
               <View
-                style={{height: hp(8), display:'flex', flexDirection:'column', justifyContent: 'space-between'}}>
-                <Text style={styles.cardText}>Self-care Tools for you</Text>
+                style={{
+                  height: hp(8),
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}>
+                <Text style={styles.cardText}>Contact Us</Text>
                 <View style={styles.Btn}>
-                  <Text style={styles.btnText2}>Discover Now</Text>
+                  <Text style={styles.btnText2}>Reach out here</Text>
                 </View>
               </View>
               <Image
