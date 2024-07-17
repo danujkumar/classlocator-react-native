@@ -18,27 +18,24 @@ import {
   ScrollView,
 } from "react-native-gesture-handler";
 
-
-
 import TasksIcon from "../../../assets/images/TasksIcon.svg";
 import NewIcon from "../../../assets/images/NewIcon.svg";
 import BottomQuote from "../../../assets/images/BottomQuote.svg";
-import Help from "../../../assets/images/Help.svg";
-
-
-
+// import Help from "../../../assets/images/Help.svg";
+import Help from "../../components/Help";
 
 import { theme } from "../../theme";
 import HomePageBanner from "../../components/HomePageBanner";
 
 const Btn = () => {
   // console.log("It is from btn: ",props)
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       style={styles.BookBtn}
       onPress={() => {
-        // navigation.navigate("webview", props.props);
+        navigation.navigate("webview", 'http://localhost:8080');
       }}
     >
       <Text style={styles.btnText}>Welcome to Classlocator</Text>
@@ -66,20 +63,10 @@ export default function HomeScreen() {
     <GestureHandlerRootView>
     <SafeAreaView>
       <StatusBar
-        backgroundColor={theme.maincolor}
-        barStyle={"light-content"}
-        hidden={false}
-        translucent={false}
-      />
-      <View
-        style={{
-          backgroundColor: theme.maincolor,
-          width: wp(100),
-          height: hp(0.8),
-          position: "absolute",
-          top: 0,
-          zIndex: 4,
-        }}
+        backgroundColor={'transparent'}
+        // barStyle={"light-content"}
+        // hidden={true}
+        translucent={true}
       />
 
       <ScrollView
@@ -88,12 +75,10 @@ export default function HomeScreen() {
         style={{ backgroundColor: "#fff", height: hp(100) }}
       >
         {/* Banner */}
-
         <View
           style={{ marginTop: hp(0) }}
         >
-          <HomePageBanner />
-
+          <HomePageBanner/>
           <View style={styles.banner}>
             <View
               className="flex-row justify-center items-center"
@@ -105,36 +90,32 @@ export default function HomeScreen() {
                 flexDirection: "row",
               }}
             >
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: wp(4),
-                  fontFamily: "Roboto",
-                  fontWeight: "400",
-                }}
-              >
-                {`Welcome 👋`}{" "}
-              </Text>
             </View>
 
             <View
               className="flex-row justify-between items-center"
-              style={{ marginTop: hp(1) }}
+              style={{marginTop: hp(4) , marginBottom: hp(2), justifyContent:'center', alignItems:'center'}}
             >
               <Image
-                source={require("../../../assets/images/homePageGIF.gif")}
-                style={{ height: wp(30), width: wp(30) }}
+                source={require("../../../assets/images/logo.png")}
+                style={{ height: wp(27.5), width: wp(70) }}
               />
-
             </View>
               <Btn/>
           </View>
         </View>
-
         {/* Content */}
         <View
-          className="flex-row justify-between"
-          style={[styles.cardContainer, { height: hp(15.8) }]}
+          style={[{
+            width: wp(100),
+            paddingHorizontal: wp(8),
+            height: hp(15.8),
+            marginTop: hp(4),
+            // backgroundColor: 'red',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }]}
         >
           <TouchableOpacity
             onPress={() => {
@@ -142,9 +123,11 @@ export default function HomeScreen() {
             }}
             style={[styles.card, { backgroundColor: "#FEF8C8" }]}
           >
-            <Text style={styles.cardText}>My {"\n"}Tasks</Text>
-
-            {/* <TasksIcon width={wp(11)} height={hp(6)} /> */}
+            <Text style={styles.cardText}>Ground {"\n"}Floor</Text>
+            <Image
+              source={require("../../../assets/images/G.png")}
+              style={{ width: wp(18), height: wp(18), marginTop: hp(1.5) }}
+            />
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -153,19 +136,11 @@ export default function HomeScreen() {
             }}
             style={[styles.card, { backgroundColor: "#EBF2F5" }]}
           >
-            <Text style={styles.cardText}>My {"\n"}Progress</Text>
-            {/* <Image
-              source={require("../../../assets/images/ProgressIcon.gif")}
-              style={{
-                width: wp(20),
-                height: hp(12),
-                position: "absolute",
-                zIndex: -1,
-                left: wp(2),
-                right: wp(2),
-                bottom: hp(1.6),
-              }}
-            /> */}
+            <Text style={styles.cardText}>First {"\n"}Floor</Text>
+            <Image
+              source={require("../../../assets/images/S.png")}
+              style={{ width: wp(18), height: wp(18) }}
+            />
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -174,23 +149,24 @@ export default function HomeScreen() {
               // navigation.navigate("webview", whatsnew);
             }}
           >
-            <Text style={styles.cardText}>What's {"\n"}New?</Text>
-            {/* <NewIcon width={wp(20)} height={hp(5)} /> */}
+            <Text style={styles.cardText}>Second {"\n"}Floor</Text>
+            <Image
+              source={require("../../../assets/images/F.png")}
+              style={{ width: wp(18), height: wp(18) }}
+            />
           </TouchableOpacity>
-
-
-
-
         </View>
+
+
 
         <TouchableOpacity
           onPress={() => {
             // navigation.navigate("webview", product);
           }}
           className="flex-col items-center"
-          style={[styles.cardContainer, { height: hp(15.8), marginTop: hp(4) }]}
+          style={[styles.cardContainer, { height: hp(15.8), marginTop: hp(3) }]}
         >
-          {/* <View style={[styles.packageCard, { backgroundColor: "#EAF7FC" }]}>
+          <View style={[styles.packageCard, { backgroundColor: "#EAF7FC" }]}>
             <View
               className="flex-col justify-between items-start "
               style={{ height: hp(9) }}
@@ -204,29 +180,35 @@ export default function HomeScreen() {
               source={require("../../../assets/images/SelfCareIcon2.png")}
               style={{ width: wp(18), height: hp(14) }}
             />
-          </View> */}
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => {
+            // navigation.navigate("webview", product);
           }}
           className="flex-col items-center"
-          style={[{ height: hp(15.8), marginTop: hp(3) }]}
+          style={[styles.cardContainer, { height: hp(15.8), marginTop: hp(3) }]}
         >
-          {/* <Help width={wp(84)} height={wp(34.4)} /> */}
+          <View style={[styles.packageCard, { backgroundColor: "#EAF7FC" }]}>
+            <View
+              className="flex-col justify-between items-start "
+              style={{ height: hp(9) }}
+            >
+              <Text style={styles.cardText}>Self-care Tools for you</Text>
+              <View style={styles.Btn}>
+                <Text style={styles.btnText2}>Discover Now</Text>
+              </View>
+            </View>
+            <Image
+              source={require("../../../assets/images/support.png")}
+              style={{ width: wp(18), height: hp(14) }}
+            />
+          </View>
         </TouchableOpacity>
 
-        <View
-          className="flex-row items-center"
-          style={[
-            styles.cardContainer,
-            { height: hp(20), marginTop: hp(5), backgroundColor: "#EBEFF2CC" },
-          ]}
-        >
-          {/* <BottomQuote width={wp(71)} height={hp(15)} /> */}
-        </View>
 
-        <View style={{ width: wp(100), height: hp(6), marginTop: hp(3) }} />
+
       </ScrollView>
     </SafeAreaView>
     </GestureHandlerRootView>
@@ -277,7 +259,7 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: wp(4),
     paddingTop: hp(1),
-    paddingBottom: hp(1.5),
+    paddingBottom: hp(1),
     display: "flex",
     flexDirection: "col",
     alignItems: "center",

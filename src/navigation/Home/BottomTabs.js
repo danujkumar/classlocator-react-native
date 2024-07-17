@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+import { View, StyleSheet, Text, Dimensions, ImageBackground } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,12 +16,11 @@ const { width, height } = Dimensions.get("window");
 
 const screenOptions = {
   contentStyle: {
-    backgroundColor: "#FF0000",
+    backgroundColor: "red",
+    // backgroundColor: "#FF0000",
   },
   headerShown: false,
-
   tabBarShowLabel: false,
-  headerShown: false,
   tabBarHideOnKeyboard: true,
   tabBarStyle: {
     position: "absolute",
@@ -29,8 +28,7 @@ const screenOptions = {
     right: 0,
     left: 0,
     // elevation: 4,
-    height: hp(9),
-
+    height: hp(8),
     shadowOpacity: 1,
     shadowRadius: 16.0,
     elevation: 4,
@@ -40,7 +38,7 @@ const screenOptions = {
 
     shadowOffset: {
       width: 0,
-      height: 12,
+      height: 0,
     },
   },
 };
@@ -50,8 +48,8 @@ export default function BottomTabs() {
   return (
     <View
       style={{
-        width,
-        height,
+        width:wp(100),
+        height:hp(104.1),
       }}
     >
       <Tab.Navigator initialRouteName="Discover_Tab" screenOptions={screenOptions}>

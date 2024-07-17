@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // Type
 import LoaderEffect from "../../navigation/Home/BottomTabs"
+import Heartitout from "../../screens/Utilities/Web/Heartitout";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ export default function AppNavigation() {
         initialRouteName={"loader"}
       >
         <Stack.Screen name="loader" component={LoaderEffect} />
+        <Stack.Screen name="webview" component={Heartitout} />
       </Stack.Navigator>
     </NavigationContainer>
   );

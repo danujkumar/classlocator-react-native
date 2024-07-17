@@ -10,8 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@dr.pogodin/react-native-static-server": "^0.15.1",
     "react": "18.2.0",
-    "react-native": "0.74.3"
+    "react-native": "0.74.3",
+    "react-native-fs": "^2.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -21,21 +23,16 @@
     "@react-native/eslint-config": "0.74.85",
     "@react-native/metro-config": "0.74.85",
     "@react-native/typescript-config": "0.74.85",
+    "@react-navigation/bottom-tabs": "^6.5.11",
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/native-stack": "^6.9.17",
+    "@react-navigation/stack": "^6.3.20",
     "@types/react": "^18.2.6",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
     "prettier": "2.8.8",
-    "react-test-renderer": "18.2.0",
-    "typescript": "5.0.4",
-
-
-
-    "@react-navigation/bottom-tabs": "^6.5.11",
-    "@react-navigation/native": "^6.1.9",
-    "@react-navigation/native-stack": "^6.9.17",
-    "@react-navigation/stack": "^6.3.20",
     "react-native-gesture-handler": "^2.14.0",
     "react-native-heroicons": "^3.2.0",
     "react-native-pager-view": "^6.2.3",
@@ -49,7 +46,9 @@
     "react-native-svg": "^14.1.0",
     "react-native-svg-transformer": "^1.2.0",
     "react-native-tab-view": "^3.5.2",
-    "react-native-webview": "^13.8.2"
+    "react-native-webview": "^13.8.2",
+    "react-test-renderer": "18.2.0",
+    "typescript": "5.0.4"
   },
   "engines": {
     "node": ">=18"
