@@ -5,8 +5,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // Type
-import LoaderEffect from "../../navigation/Home/BottomTabs"
+import LoaderEffect from "../../components/Loader/InitLoaderEffect";
 import Heartitout from "../../screens/Utilities/Web/Heartitout";
+import RightDrawer from "../Home/BottomTabs";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,8 @@ export default function AppNavigation() {
       >
         <Stack.Screen name="loader" component={LoaderEffect} />
         <Stack.Screen name="webview" component={Heartitout} />
+        <Stack.Screen name="main" component={RightDrawer} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

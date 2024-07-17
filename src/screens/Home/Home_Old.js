@@ -26,16 +26,17 @@ import Help from "../../components/Help";
 
 import { theme } from "../../theme";
 import HomePageBanner from "../../components/HomePageBanner";
+import { useState } from "react";
 
-const Btn = () => {
-  // console.log("It is from btn: ",props)
+const Btn = (props) => {
+  console.log("Generated link: ", props.props)
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       style={styles.BookBtn}
       onPress={() => {
-        navigation.navigate("webview", 'http://localhost:8080');
+        navigation.navigate("webview", props.props);
       }}
     >
       <Text style={styles.btnText}>Welcome to Classlocator</Text>
@@ -43,9 +44,9 @@ const Btn = () => {
   );
 };
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
   const navigation = useNavigation();
-
+  const [link, setLink] = useState(props.route.params.props.route.params.link)
   const backHandler = () => {
     BackHandler.exitApp();
     return true;
@@ -101,7 +102,7 @@ export default function HomeScreen() {
                 style={{ height: wp(27.5), width: wp(70) }}
               />
             </View>
-              <Btn/>
+              <Btn props={link}/>
           </View>
         </View>
         {/* Content */}

@@ -6,7 +6,7 @@ import {
   ToastAndroid,
   BackHandler,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   widthPercentageToDP as wp,
@@ -14,6 +14,8 @@ import {
 } from 'react-native-responsive-screen';
 import {useNavigation} from '@react-navigation/native';
 import {theme} from '../../theme';
+import StaticServer from '@dr.pogodin/react-native-static-server';
+import RNFS from 'react-native-fs';
 
 const showToast = message => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -21,7 +23,6 @@ const showToast = message => {
 
 export default function InitLoaderEffect() {
   const navigation = useNavigation();
-  const [server, isServer] = React.useState(true);
   const backHandler = () => {
     BackHandler.exitApp();
     return true;
@@ -35,6 +36,7 @@ export default function InitLoaderEffect() {
     BackHandler.removeEventListener('hardwareBackPress', backHandler);
   });
 
+  let server = null;
   const initializer = async () => {
     const ASSETS_FOLDER_NAME = 'build';
     const DOCUMENT_FOLDER_PATH = `${RNFS.DocumentDirectoryPath}/${ASSETS_FOLDER_NAME}`;
@@ -62,13 +64,31 @@ export default function InitLoaderEffect() {
         throw error;
       }
     };
+
     copyAssetsFolderContents(ASSETS_FOLDER_NAME, DOCUMENT_FOLDER_PATH);
   };
 
-  React.useEffect(() => {
-    initializer();
+  const startServer = async () => {
+      const path = `${RNFS.DocumentDirectoryPath}/build`;
+      server = new StaticServer(9090, path, {localOnly: true});
+
+      try {
+        const link = await server.start();
+        navigation.navigate('main',{link:link})
+      } catch (error) {
+        console.error('Failed to start server:', error);
+      }
+  };
+
+  useEffect(() => {
+    initializer().then(()=>{
+      startServer();
+    }).catch((err)=>{
+      console.log(err)
+    })
   }, []);
 
+  
   return (
     <SafeAreaView className="bg-white" style={{height: hp(100)}}>
       {/* <TopBar /> */}

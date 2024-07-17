@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@dr.pogodin/react-native-static-server": "^0.15.1",
+    "@dr.pogodin/react-native-static-server": "^0.6.0-alpha.8",
     "react": "18.2.0",
     "react-native": "0.74.3",
     "react-native-fs": "^2.20.0"
