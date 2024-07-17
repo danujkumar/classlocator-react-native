@@ -49,10 +49,7 @@ export const AuthProvider = ({children}) => {
 
 
     const path = `${RNFS.CachesDirectoryPath}/build`;
-    if (link == 'main')
-      server = new StaticServer(9090, path, {localOnly: true});
-    else server = new StaticServer(9090, path + '/maps', {localOnly: true});
-
+    server = new StaticServer(9090, path, {localOnly: true});
 
     let address = '';
     try {
@@ -61,7 +58,8 @@ export const AuthProvider = ({children}) => {
     } catch (error) {
       console.error('Failed to start server:', error);
     }
-    return address;
+
+    return link == 'main' ? `${address}/index.html` : `${address}/maps.html`;
   };
 
   return (

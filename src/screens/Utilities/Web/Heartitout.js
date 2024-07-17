@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,16 +6,16 @@ import {
   BackHandler,
   ToastAndroid,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import WebView from "react-native-webview";
-import { useNavigation } from "@react-navigation/native";
-import Back from "../../../components/Back";
+} from 'react-native-responsive-screen';
+import WebView from 'react-native-webview';
+import {useNavigation} from '@react-navigation/native';
+import Back from '../../../components/Back';
 let canGoBack = false;
-const showToast = (message) => {
+const showToast = message => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
 };
 
@@ -23,28 +23,20 @@ export default function Heartitout(props) {
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
 
-  const onNavigationStateChange = (navState) => {
-    console.log(navState.url)
-  };
-
-
   const webViewRef = useRef(null);
 
-
   const keyValuePairs = {
-    mode: 'S',
-    rotate: '0',
-    map_no: '0',
-    serviceUse: 'X',
+    map_no: props.route.params.map_no,
   };
-
 
   useEffect(() => {
     if (webViewRef.current) {
       const sessionStorageScript = `
         (function() {
           ${Object.entries(keyValuePairs)
-            .map(([key, value]) => `sessionStorage.setItem('${key}', '${value}');`)
+            .map(
+              ([key, value]) => `sessionStorage.setItem('${key}', '${value}');`,
+            )
             .join('')}
         })();
       `;
@@ -52,20 +44,18 @@ export default function Heartitout(props) {
     }
   }, [keyValuePairs]);
 
-
-
   const backHandler = () => {
     if (canGoBack) goBack();
     else navigation.goBack();
     return true;
   };
 
-  navigation.addListener("focus", () => {
-    BackHandler.addEventListener("hardwareBackPress", backHandler);
+  navigation.addListener('focus', () => {
+    BackHandler.addEventListener('hardwareBackPress', backHandler);
   });
 
-  navigation.addListener("blur", () => {
-    BackHandler.removeEventListener("hardwareBackPress", backHandler);
+  navigation.addListener('blur', () => {
+    BackHandler.removeEventListener('hardwareBackPress', backHandler);
   });
 
   const goBack = () => {
@@ -75,29 +65,22 @@ export default function Heartitout(props) {
   };
 
   useEffect(() => {
-    if(props.route.params == null || props.route.params == undefined)
-      showToast("The link is broken, please reload the app.")
-  }, [])
+    if (props.route.params.link == null || props.route.params.link == undefined)
+      showToast('The link is broken, please reload the app.');
+  }, []);
 
-
-  
-  
   return (
     <View style={styles.container}>
-
-
-
       {loading ? (
         <View
           style={{
             height: hp(80),
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'absolute',
             zIndex: 2,
-          }}
-        >
+          }}>
           <ActivityIndicator
             color="#01818C"
             animating={loading}
@@ -107,30 +90,26 @@ export default function Heartitout(props) {
       ) : (
         <></>
       )}
-
-
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => {
           navigation.goBack();
         }}
         activeOpacity={0.8}
         style={{
           width: wp(14),
-          height: hp(6),
-          backgroundColor: "#fff",
-          position: "absolute",
+          height: hp(4),
+          backgroundColor: '#fff',
+          // position: 'absolute',
           zIndex: 2,
           left: 0,
           top: 12,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
           borderRadius: wp(10),
-        }}
-      >
-        <Back color={"#455A64"} />
-      </TouchableOpacity>
+        }}>
+        <Back color={'#455A64'} />
+      </TouchableOpacity> */}
 
-      
       <WebView
         onLoadStart={() => {
           setLoading(true);
@@ -141,12 +120,12 @@ export default function Heartitout(props) {
         onError={() => {
           setLoading(false);
         }}
+        pullToRefreshEnabled={true}
         setSupportMultipleWindows={false}
         useWebView2={true}
         ref={webViewRef}
-        source={{ uri: props.route.params }} // Change the URL to test
+        source={{uri: props.route.params.link}} // Change the URL to test
         style={styles.webview}
-        onNavigationStateChange={onNavigationStateChange}
       />
     </View>
   );

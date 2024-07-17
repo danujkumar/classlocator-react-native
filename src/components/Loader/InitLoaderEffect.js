@@ -15,7 +15,6 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {theme} from '../../theme';
 import RNFS from 'react-native-fs';
-import { useAuth } from '../../utils/auth';
 
 const showToast = message => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -67,8 +66,6 @@ export default function InitLoaderEffect() {
     copyAssetsFolderContents(ASSETS_FOLDER_NAME, DOCUMENT_FOLDER_PATH);
   };
 
-  const {startServer} = useAuth();
-
   useEffect(() => {
     initializer().then(()=>{
       navigation.navigate("main")
@@ -79,7 +76,7 @@ export default function InitLoaderEffect() {
 
   
   return (
-    <SafeAreaView className="bg-white" style={{height: hp(100)}}>
+    <SafeAreaView className="bg-white" style={{height: hp(100), alignItems:'center', justifyContent: 'center' }}>
       {/* <TopBar /> */}
       {/* <LottieView
         source={require()}
@@ -93,7 +90,7 @@ export default function InitLoaderEffect() {
           position: 'absolute',
           // backgroundColor: "#fff",
           zIndex: 2,
-          marginTop: hp(20),
+          // marginTop: hp(20),
           height: hp(10),
           justifyContent: 'center',
         }}>
@@ -105,19 +102,18 @@ export default function InitLoaderEffect() {
             textAlign: 'center',
             color: theme.black,
           }}>
-          Loading Your Wellbeing Journey
+
         </Text>
       </View>
       <Image
-        source={require('../../../assets/images/loader2.gif')}
+        source={require('../../../assets/images/favicon.png')}
         resizeMode="stretch"
         style={{
-          height: wp(150),
-          width: wp(100),
-          // marginTop: hp(18),
-          // backgroundColor:'red',
-          position: 'absolute',
-          bottom: 0,
+          height: wp(80),
+          width: wp(80),
+          // marginBottom: hp(18),
+          // position: 'absolute',
+          // bottom: 0,
         }}
       />
       {/* <View style={{backgroundColor:'#CAEBFF', height:hp(34)}}>

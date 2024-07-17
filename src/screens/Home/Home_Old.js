@@ -14,13 +14,7 @@ import {
 } from 'react-native-responsive-screen';
 import {useNavigation} from '@react-navigation/native';
 import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
-import { useAuth } from '../../utils/auth';
-
-import TasksIcon from '../../../assets/images/TasksIcon.svg';
-import NewIcon from '../../../assets/images/NewIcon.svg';
-import BottomQuote from '../../../assets/images/BottomQuote.svg';
-// import Help from "../../../assets/images/Help.svg";
-import Help from '../../components/Help';
+import {useAuth} from '../../utils/auth';
 
 import {theme} from '../../theme';
 import HomePageBanner from '../../components/HomePageBanner';
@@ -33,9 +27,9 @@ const Btn = () => {
       activeOpacity={0.8}
       style={styles.BookBtn}
       onPress={() => {
-        startServer("main").then((res)=>{
-          navigation.navigate('webview', res);
-        })
+        startServer('main').then(res => {
+          navigation.navigate('webview', {link: res, map_no: 0});
+        });
       }}>
       <Text style={styles.btnText}>Welcome to Classlocator</Text>
     </TouchableOpacity>
@@ -99,7 +93,7 @@ export default function HomeScreen() {
                   style={{height: wp(27.5), width: wp(70)}}
                 />
               </View>
-              <Btn/>
+              <Btn />
             </View>
           </View>
           {/* Content */}
@@ -118,11 +112,10 @@ export default function HomeScreen() {
             ]}>
             <TouchableOpacity
               onPress={async () => {
-                startServer("maps").then((res)=>{
-                  navigation.navigate('webview', res);
-                })
+                startServer('maps').then(res => {
+                  navigation.navigate('webview', {link: res, map_no: 0});
+                });
               }}
-
               style={[styles.card, {backgroundColor: '#FEF8C8'}]}>
               <Text style={styles.cardText}>Ground {'\n'}Floor</Text>
               <Image
@@ -134,6 +127,9 @@ export default function HomeScreen() {
             <TouchableOpacity
               onPress={() => {
                 // navigation.navigate("progress", data);
+                startServer('maps').then(res => {
+                  navigation.navigate('webview', {link: res, map_no: 1});
+                });
               }}
               style={[styles.card, {backgroundColor: '#EBF2F5'}]}>
               <Text style={styles.cardText}>First {'\n'}Floor</Text>
@@ -146,7 +142,9 @@ export default function HomeScreen() {
             <TouchableOpacity
               style={[styles.card, {backgroundColor: '#EAF7FC'}]}
               onPress={() => {
-                // navigation.navigate("webview", whatsnew);
+                startServer('maps').then(res => {
+                  navigation.navigate('webview', {link: res, map_no: 2});
+                });
               }}>
               <Text style={styles.cardText}>Second {'\n'}Floor</Text>
               <Image
@@ -167,16 +165,16 @@ export default function HomeScreen() {
             ]}>
             <View style={[styles.packageCard, {backgroundColor: '#EAF7FC'}]}>
               <View
-                className="flex-col justify-between items-start "
-                style={{height: hp(9)}}>
-                <Text style={styles.cardText}>Self-care Tools for you</Text>
+                // className="flex-col justify-between items-start "
+                style={{height: hp(8), display:'flex', flexDirection:'column', justifyContent: 'space-between'}}>
+                <Text style={styles.cardText}>Whtats New</Text>
                 <View style={styles.Btn}>
                   <Text style={styles.btnText2}>Discover Now</Text>
                 </View>
               </View>
               <Image
-                source={require('../../../assets/images/SelfCareIcon2.png')}
-                style={{width: wp(18), height: hp(14)}}
+                source={require('../../../assets/images/neww.png')}
+                style={{width: wp(18), height: wp(18)}}
               />
             </View>
           </TouchableOpacity>
@@ -192,8 +190,7 @@ export default function HomeScreen() {
             ]}>
             <View style={[styles.packageCard, {backgroundColor: '#EAF7FC'}]}>
               <View
-                className="flex-col justify-between items-start "
-                style={{height: hp(9)}}>
+                style={{height: hp(8), display:'flex', flexDirection:'column', justifyContent: 'space-between'}}>
                 <Text style={styles.cardText}>Self-care Tools for you</Text>
                 <View style={styles.Btn}>
                   <Text style={styles.btnText2}>Discover Now</Text>
@@ -201,7 +198,7 @@ export default function HomeScreen() {
               </View>
               <Image
                 source={require('../../../assets/images/support.png')}
-                style={{width: wp(18), height: hp(14)}}
+                style={{width: wp(18), height: wp(18)}}
               />
             </View>
           </TouchableOpacity>

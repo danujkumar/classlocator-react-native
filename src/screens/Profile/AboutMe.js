@@ -2,18 +2,19 @@ import {
   SafeAreaView,
   StyleSheet,
   BackHandler,
-} from "react-native";
-import React, { useState } from "react";
-import {
-  GestureHandlerRootView,
-  ScrollView,
-} from "react-native-gesture-handler";
+  View,
+  Text,
+  Image,
+} from 'react-native';
+import React, {useState} from 'react';
+import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { useNavigation } from "@react-navigation/native";
-import { theme } from "../../theme";
+} from 'react-native-responsive-screen';
+import {useNavigation} from '@react-navigation/native';
+import {theme} from '../../theme';
+import Coffee from '../../components/Coffee';
 
 export default function AboutMe() {
   const navigation = useNavigation();
@@ -22,12 +23,12 @@ export default function AboutMe() {
     return true;
   };
 
-  navigation.addListener("focus", () => {
-    BackHandler.addEventListener("hardwareBackPress", backHandler);
+  navigation.addListener('focus', () => {
+    BackHandler.addEventListener('hardwareBackPress', backHandler);
   });
 
-  navigation.addListener("blur", () => {
-    BackHandler.removeEventListener("hardwareBackPress", backHandler);
+  navigation.addListener('blur', () => {
+    BackHandler.removeEventListener('hardwareBackPress', backHandler);
   });
 
   return (
@@ -35,14 +36,35 @@ export default function AboutMe() {
       <SafeAreaView>
         <ScrollView
           contentContainerStyle={{
-            display: "flex-1",
-            flexDirection: "col",
-            alignItems: "center",
+            display: 'flex-1',
+            flexDirection: 'col',
+            alignItems: 'center',
           }}
           keyboardShouldPersistTaps="always"
-          style={{ backgroundColor: "#fff", height: hp(100) }}
-        >
-          
+          style={{backgroundColor: '#fff', height: hp(100)}}>
+          <View
+            style={{
+              height: hp(21),
+              width: wp(100),
+              backgroundColor: 'red',
+          }}></View>
+
+          <Text style={{fontSize: wp(6.4)}}>Our Team</Text>
+
+          <View
+            style={{
+              backgroundColor: 'red',
+              height: hp(27),
+              width: wp(92),
+            }}></View>
+
+          <View style={{justifyContent:'center'}}>
+            <Coffee />
+            <Image
+              source={require('../../../assets/images/cof.png')}
+              style={{height: wp(14), width: wp(13), position:'absolute', right: wp(9),}}
+            />
+          </View>
         </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>
@@ -53,13 +75,13 @@ const styles = StyleSheet.create({
   input: {
     height: hp(5.7),
     width: wp(87),
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: wp(6),
     borderWidth: wp(0.3),
     borderColor: theme.black,
-    borderStyle: "solid",
-    color: "#455A64",
-    fontWeight: "500",
+    borderStyle: 'solid',
+    color: '#455A64',
+    fontWeight: '500',
     paddingHorizontal: wp(4),
     fontSize: wp(4),
   },
@@ -68,7 +90,7 @@ const styles = StyleSheet.create({
   banner: {
     // backgroundColor: 'black',
     width: wp(92),
-    position: "absolute",
+    position: 'absolute',
     left: wp(8),
     right: 0,
     top: hp(2.6),
@@ -83,100 +105,100 @@ const styles = StyleSheet.create({
   },
 
   sessions: {
-    width: "100%",
-    backgroundColor: "#f8f7fc",
+    width: '100%',
+    backgroundColor: '#f8f7fc',
     borderRadius: wp(2.5),
-    height: "100%",
+    height: '100%',
   },
 
   scrollContainer: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "white",
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'white',
     borderBottomLeftRadius: wp(2.5),
     borderBottomRightRadius: wp(2.5),
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderWidth: 2,
-    borderColor: "rgba(69, 90, 100, 0.2)",
+    borderColor: 'rgba(69, 90, 100, 0.2)',
   },
 
   BookBtn2: {
     width: wp(84),
     height: hp(6),
-    backgroundColor: "#01818c",
+    backgroundColor: '#01818c',
     borderRadius: wp(8),
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
 
   btnText2: {
-    textAlign: "center",
-    color: "#01818C",
+    textAlign: 'center',
+    color: '#01818C',
     fontSize: wp(4),
-    fontFamily: "Roboto",
-    fontWeight: "600",
+    fontFamily: 'Roboto',
+    fontWeight: '600',
   },
 
   container3: {
     width: wp(30),
     height: hp(0),
     borderBottomWidth: wp(0.4),
-    borderColor: "rgba(69, 90, 100, 0.30)",
+    borderColor: 'rgba(69, 90, 100, 0.30)',
   },
 
   BookBtn3: {
     width: wp(42),
     height: hp(5),
     borderRadius: wp(8),
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
     backgroundColor: theme.maincolor,
   },
 
   btnText3: {
-    textAlign: "center",
-    color: "#fff",
+    textAlign: 'center',
+    color: '#fff',
     fontSize: wp(4),
-    fontFamily: "Roboto",
-    fontWeight: "700",
+    fontFamily: 'Roboto',
+    fontWeight: '700',
   },
 
   card: {
     width: wp(24),
-    height: "100%",
+    height: '100%',
     borderRadius: wp(4),
     paddingTop: hp(1),
     paddingBottom: hp(1.5),
-    display: "flex",
-    flexDirection: "col",
-    alignItems: "center",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'col',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 
   cardText: {
-    textAlign: "center",
-    color: "#455A64",
+    textAlign: 'center',
+    color: '#455A64',
     fontSize: wp(4),
-    fontFamily: "Roboto",
-    fontWeight: "800",
+    fontFamily: 'Roboto',
+    fontWeight: '800',
   },
 
   test: {
-    width: "100%",
+    width: '100%',
     // height: '100%',
-    backgroundColor: "red",
+    backgroundColor: 'red',
     // maxHeight: hp(46), // Set your specific maximum height here
     borderWidth: 1, // Just for visualization purposes
-    borderColor: "black", // Just for visualization purposes
+    borderColor: 'black', // Just for visualization purposes
     // padding: 10,
   },
 
   // Feel Banner
 
   feelBanner: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     zIndex: -1,
   },
@@ -185,34 +207,34 @@ const styles = StyleSheet.create({
 
   packageCard: {
     width: wp(84),
-    height: "100%",
+    height: '100%',
     borderRadius: wp(4),
-    backgroundColor: "#FEF8C8",
+    backgroundColor: '#FEF8C8',
     paddingHorizontal: wp(4),
     paddingLeft: wp(6),
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   Btn: {
     // marginTop: hp(2),
     width: wp(38),
     height: hp(4),
-    backgroundColor: "#01818C",
+    backgroundColor: '#01818C',
     borderRadius: wp(8),
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
 
   btnText2: {
-    textAlign: "center",
-    color: "white",
+    textAlign: 'center',
+    color: 'white',
     fontSize: wp(4),
-    fontFamily: "Roboto",
-    fontWeight: "600",
+    fontFamily: 'Roboto',
+    fontWeight: '600',
   },
 
   cardContiner2: {
@@ -221,8 +243,8 @@ const styles = StyleSheet.create({
     // height: hp(15.8),
     // marginTop: hp(4),
     // backgroundColor: 'red'
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
