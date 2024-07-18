@@ -25,12 +25,14 @@ import PingCard from '../../components/PingCard';
 const Btn = () => {
   const {startServer} = useAuth();
   const navigation = useNavigation();
+  const {trackM} = useAuth();
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       style={styles.BookBtn}
       onPress={() => {
         startServer('main').then(res => {
+          trackM('Search')
           navigation.navigate('webview', {link: res, map_no: 0});
         });
       }}>
@@ -55,7 +57,7 @@ const ShareMessage = text => {
 
 export default function HomeScreen() {
   const navigation = useNavigation();
-  const {startServer, closeNow, openLinks} = useAuth();
+  const {startServer, closeNow, openLinks, trackM} = useAuth();
   const backHandler = () => {
     BackHandler.exitApp();
     return true;
@@ -156,6 +158,7 @@ Best regards,
             <TouchableOpacity
               onPress={async () => {
                 startServer('maps').then(res => {
+                  trackM('Ground-F')
                   navigation.navigate('webview', {link: res, map_no: 0});
                 });
               }}
@@ -170,6 +173,7 @@ Best regards,
             <TouchableOpacity
               onPress={() => {
                 // navigation.navigate("progress", data);
+                trackM('First-F')
                 startServer('maps').then(res => {
                   navigation.navigate('webview', {link: res, map_no: 1});
                 });
@@ -185,6 +189,7 @@ Best regards,
             <TouchableOpacity
               style={[styles.card, {backgroundColor: '#EAF7FC'}]}
               onPress={() => {
+                trackM('Second-F')
                 startServer('maps').then(res => {
                   navigation.navigate('webview', {link: res, map_no: 2});
                 });
@@ -199,6 +204,7 @@ Best regards,
 
           <TouchableOpacity
             onPress={() => {
+              trackM('Shared')
               ShareMessage(
                 `Hey! 🚀 Check out the new and improved ClassLocator app! Find emergency services instantly, even offline. Download now from the Play Store and share with your friends and family, https://nitrr-class-locator.netlify.app/`,
               );
@@ -230,6 +236,7 @@ Best regards,
           <TouchableOpacity
             className="flex-col items-center"
             onPress={() => {
+              trackM('Whatsnew')
               closeNow(true);
             }}
             style={[
@@ -260,6 +267,7 @@ Best regards,
           <TouchableOpacity
             onPress={() => {
               // navigation.navigate("webview", product);
+              trackM('Contact')
               sendEmail();
             }}
             className="flex-col items-center"

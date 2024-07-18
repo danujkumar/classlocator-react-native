@@ -20,7 +20,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 const B = props => <Text style={{fontWeight: '500'}}>{props.children}</Text>;
 
 const PingCard2 = () => {
-  const {closeNow2, close2} = useAuth();
+  const {closeNow2, close2, trackM} = useAuth();
   return (
     <View
       style={{
@@ -62,6 +62,7 @@ const PingCard2 = () => {
 
         <TouchableOpacity
           onPress={() => {
+            trackM('UPI')
             Clipboard.setString('anuj.as828@oksbi');
           }}
           style={{display: 'flex', flexDirection: 'row', padding: wp(1)}}>

@@ -2,6 +2,7 @@ import React, {createContext, useContext, useState} from 'react';
 import {ToastAndroid, Linking} from 'react-native';
 import StaticServer from '@dr.pogodin/react-native-static-server';
 import RNFS from 'react-native-fs';
+import { Mixpanel } from "mixpanel-react-native";
 
 const showToast = message => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -10,12 +11,12 @@ const showToast = message => {
 console.log('Mixpanel started...');
 const trackAutomaticEvents = true;
 export const AuthContext = createContext();
-// const mixpanel = new Mixpanel(
-//   "95cfb96d46f0484f9fa7fc4768f39577",
-//   trackAutomaticEvents
-// );
+const mixpanel = new Mixpanel(
+  "9d8dcfd7e803ece059c8ba44d9ac67a0",
+  trackAutomaticEvents
+);
 
-// mixpanel.init();
+mixpanel.init();
 
 // Sentry.init({
 //   dsn: "https://ec1b21c2b930c93a3877302c172b5d15@o4507044218732544.ingest.us.sentry.io/4507044491427840",
@@ -29,9 +30,9 @@ export const AuthProvider = ({children}) => {
   //   );
   // };
 
-  // const trackM = (title, payload) => {
-  //   mixpanel.track(title, payload);
-  // };
+  const trackM = (title) => {
+    mixpanel.track(title);
+  };
 
   const [close, setClose] = useState(false);
   const [close2, setClose2] = useState(false);
@@ -85,7 +86,8 @@ export const AuthProvider = ({children}) => {
         close, 
         closeNow,
         close2, 
-        closeNow2
+        closeNow2,
+        trackM
       }}>
       {children}
     </AuthContext.Provider>

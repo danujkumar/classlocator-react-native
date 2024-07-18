@@ -26,7 +26,7 @@ export default function AboutMe() {
     return true;
   };
 
-  const {openLinks, closeNow2} = useAuth();
+  const {openLinks, closeNow2, trackM} = useAuth();
 
   navigation.addListener('focus', () => {
     BackHandler.addEventListener('hardwareBackPress', backHandler);
@@ -62,6 +62,7 @@ export default function AboutMe() {
 
             <TouchableOpacity
               onPress={() => {
+                trackM('Github')
                 openLinks(
                   'https://github.com/danujkumar/classlocator-react-native.git',
                 );
@@ -125,6 +126,7 @@ export default function AboutMe() {
               <View style={{display: 'flex', flexDirection: 'row'}}>
                 <TouchableOpacity
                   onPressIn={() => {
+                    trackM('Github-Anuj')
                     openLinks('https://github.com/danujkumar');
                   }}
                   style={{marginLeft: wp(2)}}>
@@ -139,6 +141,7 @@ export default function AboutMe() {
                 <TouchableOpacity
                   style={{marginLeft: wp(3)}}
                   onPress={() => {
+                    trackM('Mail-Anuj')
                     openLinks('mailto:anuj.as828@gmail.com');
                   }}>
                   <Image
@@ -152,6 +155,7 @@ export default function AboutMe() {
                 <TouchableOpacity
                   style={{marginLeft: wp(3)}}
                   onPress={() => {
+                    trackM('Insta-Anuj')
                     openLinks('https://www.instagram.com/anuj_singh828/');
                   }}>
                   <Image
@@ -165,6 +169,7 @@ export default function AboutMe() {
                 <TouchableOpacity
                   style={{marginLeft: wp(3)}}
                   onPress={() => {
+                    trackM('LinkedIN-Anuj')
                     openLinks('https://www.linkedin.com/in/d-anuj-kumar/');
                   }}>
                   <Image
@@ -199,6 +204,7 @@ export default function AboutMe() {
               <View style={{display: 'flex', flexDirection: 'row'}}>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('G-Harsh')
                     openLinks('https://github.com/harshdew02');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -212,6 +218,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('M-Harsh')
                     openLinks('mailto:harshdewangan032@gmail.com');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -225,6 +232,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('I-Harsh')
                     openLinks('https://www.instagram.com/harshdew16/');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -238,6 +246,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('L-Harsh')
                     openLinks('https://www.linkedin.com/in/harshdew16/');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -273,6 +282,7 @@ export default function AboutMe() {
               <View style={{display: 'flex', flexDirection: 'row'}}>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('G-Aniket')
                     openLinks('https://github.com/Kraniket901');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -286,6 +296,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('M-Aniket')
                     openLinks('mailto:kraniket123654@gmail.com');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -299,6 +310,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('I-Aniket')
                     openLinks('https://www.instagram.com/');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -312,6 +324,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('L-Aniket')
                     openLinks('https://www.linkedin.com/in/kraniket901/');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -347,6 +360,7 @@ export default function AboutMe() {
               <View style={{display: 'flex', flexDirection: 'row'}}>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('G-Mohit')
                     openLinks('https://github.com/moh1t-do');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -360,6 +374,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('M-Mohit')
                     openLinks('mailto:mohitd2288@gmail.com');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -373,6 +388,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('I-Mohit')
                     openLinks('https://www.instagram.com/_moh1t.do_/');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -386,6 +402,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    trackM('L-Mohit')
                     openLinks('https://www.linkedin.com/in/mohitd137/');
                   }}
                   style={{marginLeft: wp(3)}}>
@@ -449,7 +466,7 @@ export default function AboutMe() {
             </Text>
           </View>
 
-          <TouchableOpacity onPress={()=>{closeNow2(true)}}>
+          <TouchableOpacity onPress={()=>{trackM('Coffee');closeNow2(true)}}>
             <View style={{justifyContent: 'center', marginTop: hp(3)}}>
               <Coffee />
               <Image
