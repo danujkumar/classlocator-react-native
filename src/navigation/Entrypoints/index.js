@@ -15,7 +15,7 @@ export default function AppNavigation() {
   return (
     <NavigationContainer
       linking={{
-        prefixes: ["https://heartitout.in/"],
+        prefixes: ["https://nitrr-class-locator.netlify.app/"],
         config: {
           screens: {
             loader: ":navigation",
