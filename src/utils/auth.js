@@ -1,4 +1,4 @@
-import React, {createContext, useContext} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 import {ToastAndroid, Linking} from 'react-native';
 import StaticServer from '@dr.pogodin/react-native-static-server';
 import RNFS from 'react-native-fs';
@@ -33,6 +33,9 @@ export const AuthProvider = ({children}) => {
   //   mixpanel.track(title, payload);
   // };
 
+  const [close, setClose] = useState(false);
+  const [close2, setClose2] = useState(false);
+
   let server = null;
 
   const startServer = async link => {
@@ -58,6 +61,14 @@ export const AuthProvider = ({children}) => {
     return link == 'main' ? `${address}/index.html` : `${address}/maps.html`;
   };
 
+  const closeNow = (value)=> {
+    setClose(value)
+  }
+
+  const closeNow2 = (value)=> {
+    setClose2(value)
+  }
+
   const openLinks = link => {
     Linking.openURL(link)
       .then(responsive => {
@@ -70,7 +81,11 @@ export const AuthProvider = ({children}) => {
     <AuthContext.Provider
       value={{
         startServer,
-        openLinks
+        openLinks,
+        close, 
+        closeNow,
+        close2, 
+        closeNow2
       }}>
       {children}
     </AuthContext.Provider>

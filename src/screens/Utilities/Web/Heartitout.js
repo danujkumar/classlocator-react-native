@@ -14,13 +14,14 @@ import {
 import WebView from 'react-native-webview';
 import {useNavigation} from '@react-navigation/native';
 import Back from '../../../components/Back';
-let canGoBack = false;
+
 const showToast = message => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
 };
 
 export default function Heartitout(props) {
   const [loading, setLoading] = useState(true);
+  const [backPressedOnce, setBackPressedOnce] = useState(false);
   const navigation = useNavigation();
 
   const webViewRef = useRef(null);
@@ -44,25 +45,26 @@ export default function Heartitout(props) {
     }
   }, [keyValuePairs]);
 
-  const backHandler = () => {
-    if (canGoBack) goBack();
-    else navigation.goBack();
-    return true;
-  };
+  useEffect(() => {
+    const backAction = () => {
+      if (backPressedOnce) {
+        navigation.goBack();
+      } else {
+        setBackPressedOnce(true);
+        showToast('Press back again to close current session');
+        setTimeout(() => {
+          setBackPressedOnce(false);
+        }, 2000);
+      }
+      return true;
+    };
 
-  navigation.addListener('focus', () => {
-    BackHandler.addEventListener('hardwareBackPress', backHandler);
-  });
-
-  navigation.addListener('blur', () => {
-    BackHandler.removeEventListener('hardwareBackPress', backHandler);
-  });
-
-  const goBack = () => {
-    if (webViewRef.current) {
-      webViewRef.current.goBack();
-    }
-  };
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+    return () => backHandler.remove();
+  }, [backPressedOnce]);
 
   useEffect(() => {
     if (props.route.params.link == null || props.route.params.link == undefined)

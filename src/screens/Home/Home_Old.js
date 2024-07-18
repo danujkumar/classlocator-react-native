@@ -55,8 +55,7 @@ const ShareMessage = text => {
 
 export default function HomeScreen() {
   const navigation = useNavigation();
-  const {startServer} = useAuth();
-  const [wnew, showNew] = useState(false);
+  const {startServer, closeNow} = useAuth();
   const backHandler = () => {
     BackHandler.exitApp();
     return true;
@@ -69,10 +68,6 @@ export default function HomeScreen() {
   navigation.addListener('blur', () => {
     BackHandler.removeEventListener('hardwareBackPress', backHandler);
   });
-
-  const closeNew = close => {
-    showNew(close);
-  };
 
   return (
     <GestureHandlerRootView>
@@ -105,17 +100,18 @@ export default function HomeScreen() {
               <View
                 className="flex-row justify-between items-center"
                 style={{
-                  marginTop: hp(4),
+                  marginTop: hp(5),
                   marginBottom: hp(2),
                   justifyContent: 'center',
+                  // backgroundColor:'red',
                   alignItems: 'center',
                 }}>
                 <Image
                   source={require('../../../assets/images/logo.png')}
-                  style={{height: wp(27.5), width: wp(70)}}
+                  style={{height: wp(23.5), width: wp(60), marginBottom: hp(2)}}
                 />
+                <Btn />
               </View>
-              <Btn />
             </View>
           </View>
 
@@ -177,16 +173,46 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </View>
 
-          {wnew ? <PingCard handleClose={closeNew} /> : <></>}
-
           <TouchableOpacity
-            disabled={true}
+            onPress={() => {
+              ShareMessage(
+                `Hey! 🚀 Check out the new and improved ClassLocator app! Find emergency services instantly, even offline. Download now from the Play Store and share with your friends and family, https://nitrr-class-locator.netlify.app/`,
+              );
+            }}
             className="flex-col items-center"
             style={[
               styles.cardContainer,
               {height: hp(15.8), marginTop: hp(3)},
             ]}>
             <View style={[styles.packageCard, {backgroundColor: '#EAF7FC'}]}>
+              <View
+                style={{
+                  height: hp(8),
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}>
+                <Text style={styles.cardText}>Share with your friends</Text>
+                <View style={styles.Btn}>
+                  <Text style={styles.btnText2}>Instantly</Text>
+                </View>
+              </View>
+              <Image
+                source={require('../../../assets/images/share.png')}
+                style={{width: wp(18), height: wp(18)}}
+              />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            className="flex-col items-center"
+            onPress={() => {
+              closeNow(true);
+            }}
+            style={[
+              styles.cardContainer,
+              {height: hp(15.8), marginTop: hp(3)},
+            ]}>
+            <View style={[styles.packageCard, {backgroundColor: '#EBF2F5'}]}>
               <View
                 // className="flex-col justify-between items-start "
                 style={{
@@ -196,26 +222,9 @@ export default function HomeScreen() {
                   justifyContent: 'space-between',
                 }}>
                 <Text style={styles.cardText}>What's New</Text>
-                <TouchableOpacity
-                  onPress={() => {
-                    // navigation.navigate("webview", product);
-                    showNew(true);
-                  }}>
-                  <View style={styles.Btn}>
-                    <Text style={styles.btnText2}>Find it out</Text>
-                  </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    ShareMessage(
-                      `Hey! 🚀 Check out the new and improved ClassLocator app! Find emergency services instantly, even offline. Download now and share with your friends and family: [link]`,
-                    );
-                  }}>
-                  <View style={styles.Btn}>
-                    <Text style={styles.btnText2}>Share</Text>
-                  </View>
-                </TouchableOpacity>
+                <View style={styles.Btn}>
+                  <Text style={styles.btnText2}>Find it out</Text>
+                </View>
               </View>
               <Image
                 source={require('../../../assets/images/neww.png')}
@@ -252,6 +261,8 @@ export default function HomeScreen() {
               />
             </View>
           </TouchableOpacity>
+
+          <View style={{height: hp(7)}}></View>
         </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>
@@ -271,7 +282,7 @@ const styles = StyleSheet.create({
 
   BookBtn: {
     marginTop: hp(2),
-    width: wp(84),
+    width: wp(75),
     height: hp(6),
     backgroundColor: 'white',
     borderRadius: wp(8),
@@ -283,7 +294,7 @@ const styles = StyleSheet.create({
   btnText: {
     textAlign: 'center',
     color: '#01818C',
-    fontSize: wp(4),
+    fontSize: wp(5),
     fontFamily: 'Roboto',
     fontWeight: '600',
   },

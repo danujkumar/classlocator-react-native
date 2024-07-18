@@ -17,7 +17,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {theme} from '../../theme';
 import Coffee from '../../components/Coffee';
-import { useAuth } from '../../utils/auth';
+import {useAuth} from '../../utils/auth';
 
 export default function AboutMe() {
   const navigation = useNavigation();
@@ -26,7 +26,7 @@ export default function AboutMe() {
     return true;
   };
 
-  const {openLinks} = useAuth();
+  const {openLinks, closeNow2} = useAuth();
 
   navigation.addListener('focus', () => {
     BackHandler.addEventListener('hardwareBackPress', backHandler);
@@ -56,10 +56,16 @@ export default function AboutMe() {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text style={{fontSize: wp(8.5), marginTop: hp(4)}}>Who We Are</Text>
+            <Text style={{fontSize: wp(8.5), marginTop: hp(4), color:'white'}}>
+              Who We Are
+            </Text>
 
             <TouchableOpacity
-              onPress={()=>{openLinks('https://github.com/danujkumar/classlocator-react-native.git')}}
+              onPress={() => {
+                openLinks(
+                  'https://github.com/danujkumar/classlocator-react-native.git',
+                );
+              }}
               style={{
                 width: wp(40),
                 display: 'flex',
@@ -67,7 +73,7 @@ export default function AboutMe() {
                 justifyContent: 'space-between',
                 marginTop: hp(1.5),
               }}>
-              <Text style={{textAlign: 'center', fontSize: wp(5)}}>
+              <Text style={{textAlign: 'center', fontSize: wp(5), color:'white'}}>
                 Contribute{'\n'}
                 on
               </Text>
@@ -82,8 +88,7 @@ export default function AboutMe() {
           </View>
 
           <Text style={{fontSize: wp(6.4), color: '#595959', marginTop: hp(2)}}>
-          Meet the Team
-
+            Meet the Team
           </Text>
 
           <View
@@ -99,7 +104,6 @@ export default function AboutMe() {
               justifyContent: 'space-between',
               alignItems: 'center',
             }}>
-
             {/* Anuj sections starts here */}
             <View
               style={{
@@ -113,14 +117,16 @@ export default function AboutMe() {
                 display: 'flex',
                 paddingHorizontal: wp(3.2),
                 flexDirection: 'row',
-                backgroundColor:'rgba(217,217,217,0.2)'
+                backgroundColor: 'rgba(217,217,217,0.2)',
               }}>
               <Text style={{color: 'black', fontSize: wp(5)}}>
                 D Anuj Kumar
               </Text>
               <View style={{display: 'flex', flexDirection: 'row'}}>
                 <TouchableOpacity
-                  onPressIn={()=>{openLinks('https://github.com/danujkumar')}}
+                  onPressIn={() => {
+                    openLinks('https://github.com/danujkumar');
+                  }}
                   style={{marginLeft: wp(2)}}>
                   <Image
                     source={require('../../../assets/images/github.png')}
@@ -130,11 +136,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}
-                  onPress={()=>{
-                    openLinks('mailto:anuj.as828@gmail.com')
-                  }}
-                >
+                <TouchableOpacity
+                  style={{marginLeft: wp(3)}}
+                  onPress={() => {
+                    openLinks('mailto:anuj.as828@gmail.com');
+                  }}>
                   <Image
                     source={require('../../../assets/images/mail.png')}
                     style={{
@@ -143,11 +149,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}
-                  onPress={()=>{
-                    openLinks('https://www.instagram.com/anuj_singh828/')
-                  }}
-                >
+                <TouchableOpacity
+                  style={{marginLeft: wp(3)}}
+                  onPress={() => {
+                    openLinks('https://www.instagram.com/anuj_singh828/');
+                  }}>
                   <Image
                     source={require('../../../assets/images/insta.png')}
                     style={{
@@ -156,11 +162,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}
-                  onPress={()=>{
-                    openLinks('https://www.linkedin.com/in/d-anuj-kumar/')
-                  }}
-                >
+                <TouchableOpacity
+                  style={{marginLeft: wp(3)}}
+                  onPress={() => {
+                    openLinks('https://www.linkedin.com/in/d-anuj-kumar/');
+                  }}>
                   <Image
                     source={require('../../../assets/images/linkedin.png')}
                     style={{
@@ -185,13 +191,17 @@ export default function AboutMe() {
                 display: 'flex',
                 paddingHorizontal: wp(3.2),
                 flexDirection: 'row',
-                backgroundColor:'rgba(217,217,217,0.2)'
+                backgroundColor: 'rgba(217,217,217,0.2)',
               }}>
               <Text style={{color: 'black', fontSize: wp(5)}}>
                 Harsh Dewangan
               </Text>
               <View style={{display: 'flex', flexDirection: 'row'}}>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('https://github.com/harshdew02');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/github.png')}
                     style={{
@@ -200,7 +210,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('mailto:harshdewangan032@gmail.com');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/mail.png')}
                     style={{
@@ -209,7 +223,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('https://www.instagram.com/harshdew16/');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/insta.png')}
                     style={{
@@ -218,7 +236,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('https://www.linkedin.com/in/harshdew16/');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/linkedin.png')}
                     style={{
@@ -243,13 +265,17 @@ export default function AboutMe() {
                 display: 'flex',
                 paddingHorizontal: wp(3.2),
                 flexDirection: 'row',
-                backgroundColor:'rgba(217,217,217,0.2)'
+                backgroundColor: 'rgba(217,217,217,0.2)',
               }}>
               <Text style={{color: 'black', fontSize: wp(5)}}>
                 Aniket Kumar
               </Text>
               <View style={{display: 'flex', flexDirection: 'row'}}>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('https://github.com/Kraniket901');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/github.png')}
                     style={{
@@ -258,7 +284,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('mailto:kraniket123654@gmail.com');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/mail.png')}
                     style={{
@@ -267,7 +297,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('https://www.instagram.com/kraniket901/');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/insta.png')}
                     style={{
@@ -276,7 +310,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('https://www.linkedin.com/in/kraniket901/');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/linkedin.png')}
                     style={{
@@ -301,13 +339,17 @@ export default function AboutMe() {
                 display: 'flex',
                 paddingHorizontal: wp(3.2),
                 flexDirection: 'row',
-                backgroundColor:'rgba(217,217,217,0.2)'
+                backgroundColor: 'rgba(217,217,217,0.2)',
               }}>
               <Text style={{color: 'black', fontSize: wp(5)}}>
                 Mohit Doraiburu
               </Text>
               <View style={{display: 'flex', flexDirection: 'row'}}>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('https://github.com/moh1t-do');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/github.png')}
                     style={{
@@ -316,7 +358,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('mailto:mohitd2288@gmail.com');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/mail.png')}
                     style={{
@@ -325,7 +371,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('https://www.instagram.com/_moh1t.do_/');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/insta.png')}
                     style={{
@@ -334,7 +384,11 @@ export default function AboutMe() {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft: wp(3)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    openLinks('https://www.linkedin.com/in/mohitd137/');
+                  }}
+                  style={{marginLeft: wp(3)}}>
                   <Image
                     source={require('../../../assets/images/linkedin.png')}
                     style={{
@@ -345,7 +399,6 @@ export default function AboutMe() {
                 </TouchableOpacity>
               </View>
             </View>
-
           </View>
 
           <View
@@ -365,7 +418,7 @@ export default function AboutMe() {
                 width: wp(76),
                 textAlign: 'center',
                 fontSize: wp(4.1),
-                marginBottom: wp(3)
+                marginBottom: wp(3),
               }}>
               Class Locator Gives You The Most Simplest & Quickest Way to Find
               the Pathway to Your ClassRoom
@@ -377,7 +430,7 @@ export default function AboutMe() {
                 width: wp(76),
                 textAlign: 'center',
                 fontSize: wp(4.0),
-                fontWeight: 'bold'
+                fontWeight: '500',
               }}>
               Application Version : 1.0
             </Text>
@@ -388,26 +441,26 @@ export default function AboutMe() {
                 width: wp(76),
                 textAlign: 'center',
                 fontSize: wp(4.0),
-                fontWeight: 'bold'
+                fontWeight: '500',
               }}>
               Engine Version : 2.0
             </Text>
           </View>
 
-          <View style={{justifyContent: 'center', marginTop: hp(3)}}>
-            <Coffee />
-            <Image
-              source={require('../../../assets/images/cof.png')}
-              style={{
-                height: wp(14),
-                width: wp(13),
-                position: 'absolute',
-                right: wp(9),
-              }}
-            />
-          </View>
-
-
+          <TouchableOpacity onPress={()=>{closeNow2(true)}}>
+            <View style={{justifyContent: 'center', marginTop: hp(3)}}>
+              <Coffee />
+              <Image
+                source={require('../../../assets/images/cof.png')}
+                style={{
+                  height: wp(14),
+                  width: wp(13),
+                  position: 'absolute',
+                  right: wp(9),
+                }}
+              />
+            </View>
+          </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>

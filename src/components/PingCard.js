@@ -13,18 +13,21 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {theme} from '../theme';
+import { useAuth } from '../utils/auth';
 
 const B = props => <Text style={{fontWeight: '500'}}>{props.children}</Text>;
 
-const PingCard = ({handleClose}) => {
+const PingCard = () => {
+  const {closeNow, close} = useAuth();
   return (
     <View      
       style={{
         width: wp(100),
-        height: hp(100),
+        height: hp(104.2),
         position: 'absolute',
         zIndex: 5,
         backgroundColor: 'rgba(256, 256, 256, 0.5)',
+        display: close ? "flex" : "none"
       }}>
 
       <View
@@ -94,7 +97,7 @@ const PingCard = ({handleClose}) => {
               flexDirection: 'row',
             },
           ]}
-          onPress={() => {handleClose(false)}}>
+          onPress={() => {closeNow(false)}}>
           <Text style={[{color: '#fff', fontSize: wp(5)}]}>Close</Text>
         </TouchableOpacity>
       </View>
