@@ -119,7 +119,7 @@ export default function AboutMe() {
                 flexDirection: 'row',
                 backgroundColor: 'rgba(217,217,217,0.2)',
               }}>
-              <Text style={{color: 'black', fontSize: wp(5)}}>
+              <Text style={{color: '#595959', fontSize: wp(4.5)}}>
                 D Anuj Kumar
               </Text>
               <View style={{display: 'flex', flexDirection: 'row'}}>
@@ -193,7 +193,7 @@ export default function AboutMe() {
                 flexDirection: 'row',
                 backgroundColor: 'rgba(217,217,217,0.2)',
               }}>
-              <Text style={{color: 'black', fontSize: wp(5)}}>
+              <Text style={{color: '#595959', fontSize: wp(4.5)}}>
                 Harsh Dewangan
               </Text>
               <View style={{display: 'flex', flexDirection: 'row'}}>
@@ -267,7 +267,7 @@ export default function AboutMe() {
                 flexDirection: 'row',
                 backgroundColor: 'rgba(217,217,217,0.2)',
               }}>
-              <Text style={{color: 'black', fontSize: wp(5)}}>
+              <Text style={{color: '#595959', fontSize: wp(4.5)}}>
                 Aniket Kumar
               </Text>
               <View style={{display: 'flex', flexDirection: 'row'}}>
@@ -341,7 +341,7 @@ export default function AboutMe() {
                 flexDirection: 'row',
                 backgroundColor: 'rgba(217,217,217,0.2)',
               }}>
-              <Text style={{color: 'black', fontSize: wp(5)}}>
+              <Text style={{color: '#595959', fontSize: wp(4.5)}}>
                 Mohit Doraiburu
               </Text>
               <View style={{display: 'flex', flexDirection: 'row'}}>
@@ -414,11 +414,13 @@ export default function AboutMe() {
             }}>
             <Text
               style={{
-                color: 'black',
+                color: '#595959',
                 width: wp(76),
                 textAlign: 'center',
-                fontSize: wp(4.1),
+                fontSize: wp(3.8),
                 marginBottom: wp(3),
+                fontStyle:'italic',
+                lineHeight:wp(5)
               }}>
               Class Locator Gives You The Most Simplest & Quickest Way to Find
               the Pathway to Your ClassRoom

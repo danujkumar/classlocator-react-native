@@ -30,14 +30,16 @@ const PingCard2 = () => {
         zIndex: 5,
         backgroundColor: 'rgba(256, 256, 256, 0.5)',
         display: close2 ? 'flex' : 'none',
+        alignItems:'center'
       }}>
       <View
         style={{
           paddingVertical: hp(3.5),
           height: hp(60),
-          width: wp(100),
+          width: wp(90),
           backgroundColor: '#fff',
           marginTop: hp(16),
+          borderWidth: wp(0.2),
           borderRadius: wp(8),
           alignItems: 'center',
           justifyContent: 'space-between',
