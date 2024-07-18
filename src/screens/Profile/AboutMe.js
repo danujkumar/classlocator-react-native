@@ -463,6 +463,13 @@ export default function AboutMe() {
               />
             </View>
           </TouchableOpacity>
+
+          <Text style={{marginTop:hp(2), color:'grey'}} >
+            Ⓒ 2024 ElexCode. All rights reserved.
+          </Text>
+
+          <View style={{height:hp(6)}}>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>
