@@ -55,7 +55,7 @@ const ShareMessage = text => {
 
 export default function HomeScreen() {
   const navigation = useNavigation();
-  const {startServer, closeNow} = useAuth();
+  const {startServer, closeNow, openLinks} = useAuth();
   const backHandler = () => {
     BackHandler.exitApp();
     return true;
@@ -68,6 +68,30 @@ export default function HomeScreen() {
   navigation.addListener('blur', () => {
     BackHandler.removeEventListener('hardwareBackPress', backHandler);
   });
+
+  const sendEmail = () => {
+    const email = 'elexcode404@gmail.com';
+    const subject = 'Give us feedback or let us know if you find any bugs';
+    const body = `To Elex-Code Team,
+
+I am writing to give a feedback or report a bug. Below are the details:
+
+Feedback/Bug Report: [Detailed description of the bug, or the feedback you want to give us.]
+
+Please let me know if you need any further information or assistance.
+
+Thank you for your attention to this matter.
+
+Best regards,
+[Your Full Name]
+[Your Contact Information]
+[Your Branch]`;
+
+    const mailtoURL = `mailto:${email}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+    openLinks(mailtoURL);
+  };
 
   return (
     <GestureHandlerRootView>
@@ -236,6 +260,7 @@ export default function HomeScreen() {
           <TouchableOpacity
             onPress={() => {
               // navigation.navigate("webview", product);
+              sendEmail();
             }}
             className="flex-col items-center"
             style={[

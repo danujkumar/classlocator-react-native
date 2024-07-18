@@ -5,6 +5,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ToastAndroid,
 } from 'react-native';
 import React from 'react';
 import HomePing from '../../assets/images/homePing.svg';
@@ -14,6 +15,7 @@ import {
 } from 'react-native-responsive-screen';
 import {theme} from '../theme';
 import {useAuth} from '../utils/auth';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 const B = props => <Text style={{fontWeight: '500'}}>{props.children}</Text>;
 
@@ -46,7 +48,7 @@ const PingCard2 = () => {
             fontWeight: '500',
             textAlign: 'center',
             color: '#455A64',
-            marginTop: hp(2)
+            marginTop: hp(2),
           }}>
           Please Donate Us
         </Text>
@@ -56,12 +58,18 @@ const PingCard2 = () => {
           style={{width: wp(60), height: wp(60)}}
         />
 
-        <TouchableOpacity style={{display:'flex', flexDirection:'row', padding:wp(1)}} >
-          <Text style={{fontSize:wp(4), color:'black'}} >UPI ID: anuj.as828@oksbi</Text>
+        <TouchableOpacity
+          onPress={() => {
+            Clipboard.setString('anuj.as828@oksbi');
+          }}
+          style={{display: 'flex', flexDirection: 'row', padding: wp(1)}}>
+          <Text style={{fontSize: wp(4), color: 'black'}}>
+            UPI ID: anuj.as828@oksbi
+          </Text>
           <Image
-          source={require('../../assets/images/copy.png')}
-          style={{width: wp(5), height: wp(5), marginLeft:wp(2)}}
-        />
+            source={require('../../assets/images/copy.png')}
+            style={{width: wp(5), height: wp(5), marginLeft: wp(2)}}
+          />
         </TouchableOpacity>
 
         <TouchableOpacity
