@@ -299,7 +299,7 @@ export default function AboutMe() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    openLinks('https://www.instagram.com/kraniket901/');
+                    openLinks('https://www.instagram.com/');
                   }}
                   style={{marginLeft: wp(3)}}>
                   <Image
