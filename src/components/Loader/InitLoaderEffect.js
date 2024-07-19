@@ -36,9 +36,9 @@ export default function InitLoaderEffect() {
   });
 
   const initializer = async () => {
-    const ASSETS_FOLDER_NAME = 'build';
+    const ASSETS_FOLDER_NAME = 'engine';
     const DOCUMENT_FOLDER_PATH = `${RNFS.CachesDirectoryPath}/${ASSETS_FOLDER_NAME}`;
-
+    console.log(ASSETS_FOLDER_NAME, DOCUMENT_FOLDER_PATH);
     const copyAssetsFolderContents = async (sourcePath, targetPath) => {
       try {
         const items = await RNFS.readDirAssets(sourcePath);

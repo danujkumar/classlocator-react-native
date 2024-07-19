@@ -13,6 +13,7 @@ import {
 } from 'react-native-responsive-screen';
 import WebView from 'react-native-webview';
 import {useNavigation} from '@react-navigation/native';
+import { useAuth } from '../../../utils/auth';
 import Back from '../../../components/Back';
 
 const showToast = message => {
@@ -23,6 +24,7 @@ export default function Heartitout(props) {
   const [loading, setLoading] = useState(true);
   const [backPressedOnce, setBackPressedOnce] = useState(false);
   const navigation = useNavigation();
+  const {stopServer} = useAuth();
 
   const webViewRef = useRef(null);
 
@@ -65,6 +67,10 @@ export default function Heartitout(props) {
     );
     return () => backHandler.remove();
   }, [backPressedOnce]);
+
+  navigation.addListener('blur',()=>{
+    stopServer();
+  })
 
   useEffect(() => {
     if (props.route.params.link == null || props.route.params.link == undefined)

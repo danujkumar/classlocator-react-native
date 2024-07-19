@@ -2,7 +2,7 @@ import React, {createContext, useContext, useState} from 'react';
 import {ToastAndroid, Linking} from 'react-native';
 import StaticServer from '@dr.pogodin/react-native-static-server';
 import RNFS from 'react-native-fs';
-import { Mixpanel } from "mixpanel-react-native";
+import {Mixpanel} from 'mixpanel-react-native';
 
 const showToast = message => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -12,8 +12,8 @@ console.log('Mixpanel started...');
 const trackAutomaticEvents = true;
 export const AuthContext = createContext();
 const mixpanel = new Mixpanel(
-  "9d8dcfd7e803ece059c8ba44d9ac67a0",
-  trackAutomaticEvents
+  '9d8dcfd7e803ece059c8ba44d9ac67a0',
+  trackAutomaticEvents,
 );
 
 mixpanel.init();
@@ -30,7 +30,7 @@ export const AuthProvider = ({children}) => {
   //   );
   // };
 
-  const trackM = (title) => {
+  const trackM = title => {
     mixpanel.track(title);
   };
 
@@ -40,16 +40,9 @@ export const AuthProvider = ({children}) => {
   let server = null;
 
   const startServer = async link => {
-    let isRun = false;
-
-    if (server != null) {
-      isRun = await server.isRunning();
-    } else isRun = false;
-
-    if (isRun == true) server.stop();
-
-    const path = `${RNFS.CachesDirectoryPath}/build`;
-    server = new StaticServer(9090, path, {localOnly: true});
+    await stopServer()
+    const path = `${RNFS.CachesDirectoryPath}/engine`;
+    server = new StaticServer(0, path, {localOnly: true});
 
     let address = '';
     try {
@@ -62,13 +55,23 @@ export const AuthProvider = ({children}) => {
     return link == 'main' ? `${address}/index.html` : `${address}/maps.html`;
   };
 
-  const closeNow = (value)=> {
-    setClose(value)
-  }
+  const stopServer = async () => {
+    let isRun = false;
 
-  const closeNow2 = (value)=> {
-    setClose2(value)
-  }
+    if (server != null) {
+      isRun = await server.isRunning();
+    } else isRun = false;
+
+    if (isRun == true) server.stop();
+  };
+
+  const closeNow = value => {
+    setClose(value);
+  };
+
+  const closeNow2 = value => {
+    setClose2(value);
+  };
 
   const openLinks = link => {
     Linking.openURL(link)
@@ -82,12 +85,13 @@ export const AuthProvider = ({children}) => {
     <AuthContext.Provider
       value={{
         startServer,
+        stopServer,
         openLinks,
-        close, 
+        close,
         closeNow,
-        close2, 
+        close2,
         closeNow2,
-        trackM
+        trackM,
       }}>
       {children}
     </AuthContext.Provider>

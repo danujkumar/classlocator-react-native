@@ -10,18 +10,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import DiscoverScreen from '../../screens/Discover/Discover.js';
 import HomeScreen from '../../screens/Home/Home_Old.js';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import SVGComponent from '../../components/SVGcom.js';
 import HomeIcon from '../../components/HomeIcon.js';
 import ProfileIcon from '../../components/Profile.js';
 import AboutMe from '../../screens/Profile/AboutMe.js';
 import PingCard from '../../components/PingCard.js';
 import { useAuth } from '../../utils/auth.js';
 import PingCard2 from '../../components/PingCard2.js';
-
-const {width, height} = Dimensions.get('window');
 
 const screenOptions = {
   contentStyle: {

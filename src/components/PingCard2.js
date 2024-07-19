@@ -8,7 +8,6 @@ import {
   ToastAndroid,
 } from 'react-native';
 import React from 'react';
-import HomePing from '../../assets/images/homePing.svg';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,8 +15,6 @@ import {
 import {theme} from '../theme';
 import {useAuth} from '../utils/auth';
 import Clipboard from '@react-native-clipboard/clipboard';
-
-const B = props => <Text style={{fontWeight: '500'}}>{props.children}</Text>;
 
 const PingCard2 = () => {
   const {closeNow2, close2, trackM} = useAuth();
