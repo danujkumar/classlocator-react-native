@@ -462,7 +462,7 @@ export default function AboutMe() {
                 fontSize: wp(4.0),
                 fontWeight: '500',
               }}>
-              Engine Version : 2.0
+              Engine Version : 2.0.1
             </Text>
           </View>
 
