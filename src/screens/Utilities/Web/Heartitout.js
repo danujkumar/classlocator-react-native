@@ -115,7 +115,7 @@ export default function Heartitout(props) {
       ) : (
         <></>
       )}
-      {/* <TouchableOpacity
+      <TouchableOpacity
         onPress={() => {
           runJavaScript();
           console.log(`${sharedLink}${JSON.stringify(sessionData)}`)
@@ -134,7 +134,7 @@ export default function Heartitout(props) {
           borderRadius: wp(10),
         }}>
         <Back color={'#455A64'} />
-      </TouchableOpacity> */}
+      </TouchableOpacity>
 
       <WebView
         onLoadStart={() => {
