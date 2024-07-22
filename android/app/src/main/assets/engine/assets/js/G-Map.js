@@ -1,11 +1,11 @@
 import { switchMap, resetCache, switching } from "./Zoom.js";
 import { createPopup } from "./DialogBox.js";
-import mapping from "./json/bluetoGreen.json" with { type: "json" };
-import mappingf from "./json/bluetoGreen1.json" with {type:"json"};
-import mappings from "./json/bluetoGreen2.json" with {type:"json"};
-import exceptions from "./json/exceptionPaths.json" with { type: "json" };
-import searching from "./json/searchTool.json" with{type:"json"};
-import floorsConnect from "./json/floorsConnection.json" with{type:"json"};
+let mapping = new URL("./json/bluetoGreen.json", import.meta.url);
+let mappingf = new URL("./json/bluetoGreen1.json", import.meta.url);
+let mappings = new URL("./json/bluetoGreen2.json", import.meta.url);
+let exceptions = new URL("./json/exceptionPaths.json", import.meta.url);
+let floorsConnect = new URL("./json/floorsConnection.json", import.meta.url);
+let searching = new URL("./json/searchTool.json", import.meta.url);
 
 let starting;
 let ending, map_no;
@@ -147,6 +147,12 @@ const reload = () => {
 };
 
 window.addEventListener("load", async () => {
+  exceptions = await fetch(exceptions).then((r) => r.json());
+  floorsConnect = await fetch(floorsConnect).then((r) => r.json());
+  mapping = await fetch(mapping).then((r) => r.json());
+  mappingf = await fetch(mappingf).then((r) => r.json());
+  mappings = await fetch(mappings).then((r) => r.json());
+  searching = await fetch(searching).then((r) => r.json());
   try {
     for (let k in searching) {
       if (searching[k]["details"] == "")
