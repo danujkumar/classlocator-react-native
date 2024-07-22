@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Class Locator - Home</title>
+  <meta content="This Is The Landing Page To Our ClassRoom Locator Website" name="description">
+  <meta content="nit, raipur, chhattisgarh, national, institute, technology, class, locator, nitrr, classroom"
+    name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Open+Sans:300,300i,400,400i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS5SNMMD07"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-TS5SNMMD07');
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+    function onSubmit(token) {
+      document.getElementById("my-form").submit();
+    }
+  </script>
+</head>
+
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <!-- This section is for dialog box -->
+  <div class="popup" id="popup">
+    <div class="overlay"></div>
+    <div class="popup-content">
+      <h1><i style="color:#3274ed"><i class="bi bi-info-circle-fill"></i></i>&nbsp;Information</h1>
+      <p></p>
+      <div class="service">
+        <button class="services" id="services1">Nearest Stairs</button>
+        <button class="services" id="services2">Nearest Lift/Water</button>
+        <button class="services" id="services3">Nearest Ladies Toilet</button>
+        <button class="services" id="services4">Nearest Gents Toilet</button>
+        <button class="services" id="services5">Nearest Exit Gates</button>
+      </div>
+      <div class="controls">
+        <button class="close-btn">Close</button>
+        <button class="close-btn" id="continueAny">Continue Anyway</button>
+      </div>
+    </div>
+  </div>
+
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex justify-content-center align-items-center">
+      <div id="logo">
+        <a href="./index.html"><img height="50px" src="assets/img/logo.png" alt="logo"></a>
+      </div>
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-text" data-aos="zoom-out">
+      <div class="row">
+        <div class="bigContainer">
+          <div class="hcontainer">
+            <input id="current" type="text" placeholder="Nearest Room" name="current" value="" autocomplete="off" />
+          </div>
+          <div id="currentdiv" class="iContainer">
+            <!-- Don't think this section useless, it is used for showing the search results -->
+          </div>
+          <a id="swap" class="btn-get-started"
+            style="border:none;margin:0;width:50px; padding:0.5rem 1rem;cursor:pointer;"><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512" fill="white"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path 
+                d="M32 96l320 0V32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l96 96c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-96 96c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V160L32 160c-17.7 0-32-14.3-32-32s14.3-32 32-32zM480 352c17.7 0 32 14.3 32 32s-14.3 32-32 32H160v64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-96-96c-6-6-9.4-14.1-9.4-22.6s3.4-16.6 9.4-22.6l96-96c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 64H480z" />
+            </svg></a>
+          <div class="hcontainer">
+            <input id="final" type="text" placeholder="Destination Room" name="search-box" value=""
+              autocomplete="off" />
+          </div>
+          <div id="finaldiv" class="iContainer i2Container">
+            <!-- Don't think this section useless, it is used for showing the search results -->
+          </div>
+          <a href=/maps.html" id="search" class="btn-get-started"
+            style="width:80px; padding:0.5rem 1rem;cursor:pointer;"><i class="bi bi-search"></i></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p style="font-style:normal;">EXPLORE :</p>
+          <a id="grounds1" href="./maps.html" class="btn-get-started scrollto">Ground Floor</a>
+          <a id="firstt1" href="./maps.html" class="btn-get-started scrollto">First Floor</a>
+          <a id="secondd1" href="./maps.html" class="btn-get-started scrollto">Second Floor</a>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-chevron-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/Suggestion-index.js" type="module"></script>
+
+
+</body>
+
+</html>
