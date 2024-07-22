@@ -25,8 +25,23 @@ export default function Heartitout(props) {
   const [backPressedOnce, setBackPressedOnce] = useState(false);
   const navigation = useNavigation();
   const {stopServer} = useAuth();
+  let sharedLink = "https://nitrr-class-locator.netlify.app/"
 
   const webViewRef = useRef(null);
+
+  const runJavaScript = () => {
+    const getSessionStorage = `
+      (function() {
+        let sessionData = {};
+        for (let i = 0; i < sessionStorage.length; i++) {
+          let key = sessionStorage.key(i);
+          sessionData[key] = sessionStorage.getItem(key);
+        }
+        window.ReactNativeWebView.postMessage(JSON.stringify(sessionData));
+      })();
+    `
+    webViewRef.current.injectJavaScript(getSessionStorage);
+  }
 
   const keyValuePairs = {
     map_no: props.route.params.map_no,
@@ -46,6 +61,8 @@ export default function Heartitout(props) {
       webViewRef.current.injectJavaScript(sessionStorageScript);
     }
   }, [keyValuePairs]);
+
+  let sessionData;
 
   useEffect(() => {
     const backAction = () => {
@@ -100,7 +117,8 @@ export default function Heartitout(props) {
       )}
       {/* <TouchableOpacity
         onPress={() => {
-          navigation.goBack();
+          runJavaScript();
+          console.log(`${sharedLink}${JSON.stringify(sessionData)}`)
         }}
         activeOpacity={0.8}
         style={{
@@ -133,6 +151,9 @@ export default function Heartitout(props) {
         useWebView2={true}
         ref={webViewRef}
         source={{uri: props.route.params.link}} // Change the URL to test
+        onMessage={(event) => {
+          sessionData = JSON.parse(event.nativeEvent.data);
+        }}
         style={styles.webview}
       />
     </View>
