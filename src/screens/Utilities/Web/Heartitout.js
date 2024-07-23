@@ -197,7 +197,7 @@ export default function Heartitout(props) {
         onMessage={event => {
           sessionData = JSON.parse(event.nativeEvent.data);
           ShareMessage(
-            `Hey, where are you I am here, please come fast!!, ${jsonToUrlParams(
+            `Please find my current location attached for your reference, ${jsonToUrlParams(
               sessionData,
             )}`,
           );
