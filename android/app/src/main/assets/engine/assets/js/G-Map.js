@@ -178,6 +178,19 @@ window.addEventListener("load", async () => {
   }
 });
 
+let first = false;
+document.addEventListener('message', event => {
+  if (!first) {
+    const data = JSON.parse(event.data);
+    for (const [key, value] of Object.entries(data)) {
+      sessionStorage.setItem(key, value);
+    }
+    const test = JSON.stringify(data);
+    first = true;
+    reload();
+  }
+});
+
 buttonCon[0].onclick = () => {
   sessionStorage.setItem("map_no", "0");
   reload(); //Almost clear
