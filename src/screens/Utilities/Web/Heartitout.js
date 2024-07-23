@@ -13,7 +13,7 @@ import {
 } from 'react-native-responsive-screen';
 import WebView from 'react-native-webview';
 import {useNavigation} from '@react-navigation/native';
-import { useAuth } from '../../../utils/auth';
+import {useAuth} from '../../../utils/auth';
 import Back from '../../../components/Back';
 
 const showToast = message => {
@@ -26,26 +26,17 @@ export default function Heartitout(props) {
   const navigation = useNavigation();
   const {stopServer} = useAuth();
 
-  const webViewRef = useRef(null);
-
   const keyValuePairs = {
     map_no: props.route.params.map_no,
   };
 
+  const webViewRef = useRef(null);
   useEffect(() => {
-    if (webViewRef.current) {
-      const sessionStorageScript = `
-        (function() {
-          ${Object.entries(keyValuePairs)
-            .map(
-              ([key, value]) => `sessionStorage.setItem('${key}', '${value}');`,
-            )
-            .join('')}
-        })();
-      `;
-      webViewRef.current.injectJavaScript(sessionStorageScript);
+    if(webViewRef.current && keyValuePairs.map_no != -1){
+      const data = JSON.stringify(keyValuePairs);
+      webViewRef.current.postMessage(data);
     }
-  }, [keyValuePairs]);
+  }, [keyValuePairs])
 
   useEffect(() => {
     const backAction = () => {
@@ -68,9 +59,9 @@ export default function Heartitout(props) {
     return () => backHandler.remove();
   }, [backPressedOnce]);
 
-  navigation.addListener('blur',()=>{
+  navigation.addListener('blur', () => {
     stopServer();
-  })
+  });
 
   useEffect(() => {
     if (props.route.params.link == null || props.route.params.link == undefined)
@@ -123,7 +114,7 @@ export default function Heartitout(props) {
           setLoading(true);
         }}
         onLoad={() => {
-          setLoading(false);
+          setLoading(false);          
         }}
         onError={() => {
           setLoading(false);
@@ -131,9 +122,9 @@ export default function Heartitout(props) {
         pullToRefreshEnabled={true}
         setSupportMultipleWindows={false}
         useWebView2={true}
-        ref={webViewRef}
         source={{uri: props.route.params.link}} // Change the URL to test
         style={styles.webview}
+        ref={webViewRef}
       />
     </View>
   );

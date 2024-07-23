@@ -33,7 +33,7 @@ const Btn = () => {
       onPress={() => {
         startServer('main').then(res => {
           trackM('Search')
-          navigation.navigate('webview', {link: res, map_no: 0});
+          navigation.navigate('webview', {link: res, map_no: -1});
         });
       }}>
       <Text style={styles.btnText}>Search & Go</Text>
