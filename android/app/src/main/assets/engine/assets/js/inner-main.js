@@ -225,7 +225,7 @@ document.addEventListener('message', event => {
       sessionStorage.setItem(key, value);
     }
     const test = JSON.stringify(data);
-    alert(test);
+    // alert(test);
     first = true;
   }
 });

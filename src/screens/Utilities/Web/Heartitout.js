@@ -6,6 +6,9 @@ import {
   BackHandler,
   ToastAndroid,
   TouchableOpacity,
+  Image,
+  StatusBar,
+  Text
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -16,6 +19,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useAuth} from '../../../utils/auth';
 import Back from '../../../components/Back';
 import Share from 'react-native-share';
+// import {Image} from 'react-native-svg';
 
 const showToast = message => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -37,13 +41,13 @@ const ShareMessage = text => {
 
 function jsonToUrlParams(json) {
   const params = new URLSearchParams();
-  const baseURL = "https://nitrr-class-locator.netlify.app/maps"
+  const baseURL = 'https://nitrr-class-locator.netlify.app/maps';
   for (const key in json) {
     if (json.hasOwnProperty(key)) {
       params.append(key, json[key]);
     }
   }
-  return `${baseURL}?${params.toString()}`
+  return `${baseURL}?${params.toString()}`;
 }
 
 export default function Heartitout(props) {
@@ -58,23 +62,20 @@ export default function Heartitout(props) {
 
   const webViewRef = useRef(null);
   useEffect(() => {
-    if(webViewRef.current && keyValuePairs.map_no != -1){
-      if(keyValuePairs.map_no == 3)
-      {
+    if (webViewRef.current && keyValuePairs.map_no != -1) {
+      if (keyValuePairs.map_no == 3) {
         const data = JSON.stringify(props.route.params.parameters);
         webViewRef.current.postMessage(data);
-      }
-      else
-      {
+      } else {
         const data = JSON.stringify(keyValuePairs);
-        webViewRef.current.postMessage(data);        
+        webViewRef.current.postMessage(data);
       }
     }
-  }, [keyValuePairs])
+  }, [keyValuePairs]);
 
   let sessionData;
 
-  const runJavaScript = ()=>{
+  const runJavaScript = () => {
     const getSessionStorage = `
     (function() {
       let sessionData = {};
@@ -85,9 +86,9 @@ export default function Heartitout(props) {
       window.ReactNativeWebView.postMessage(JSON.stringify(sessionData));
     })();
   `;
-  
-  webViewRef.current.injectJavaScript(getSessionStorage);
-  }
+
+    webViewRef.current.injectJavaScript(getSessionStorage);
+  };
 
   useEffect(() => {
     const backAction = () => {
@@ -121,6 +122,12 @@ export default function Heartitout(props) {
 
   return (
     <View style={styles.container}>
+              <StatusBar
+          backgroundColor={'transparent'}
+          // barStyle={"light-content"}
+          // hidden={true}
+          translucent={true}
+        />
       {loading ? (
         <View
           style={{
@@ -141,37 +148,44 @@ export default function Heartitout(props) {
         <></>
       )}
 
-
-
       <TouchableOpacity
         onPress={() => {
           runJavaScript();
         }}
         activeOpacity={0.8}
         style={{
-          width: wp(14),
-          height: hp(4),
+          width: wp(10),
+          height: hp(8),
           backgroundColor: '#fff',
-          // position: 'absolute',
+          borderWidth: 1,
+          position: 'absolute',
           zIndex: 2,
-          left: 0,
-          top: 56,
+          right: 20,
+          bottom: 20,
           justifyContent: 'center',
+          // display:'flex',
+          // flexDirection:'row',
           alignItems: 'center',
-          borderRadius: wp(10),
+          borderRadius: wp(6),
         }}>
-        <Back color={'#455A64'} />
+        {/* <Back color={'#455A64'} /> */}
+        <Image
+          source={require('../../../../assets/images/sharelocation.png')}
+          style={{
+            width: wp(10),
+            height: wp(10),
+            // backgroundColor: 'red',
+          }}
+        />
+        {/* <Text style={{textAlign:'center', fontSize:wp(2) }} >Share Location</Text> */}
       </TouchableOpacity>
-
-
-
 
       <WebView
         onLoadStart={() => {
           setLoading(true);
         }}
         onLoad={() => {
-          setLoading(false);          
+          setLoading(false);
         }}
         onError={() => {
           setLoading(false);
@@ -180,9 +194,13 @@ export default function Heartitout(props) {
         setSupportMultipleWindows={false}
         useWebView2={true}
         source={{uri: props.route.params.link}} // Change the URL to test
-        onMessage={(event) => {
+        onMessage={event => {
           sessionData = JSON.parse(event.nativeEvent.data);
-          ShareMessage(`Hey, where are you I am here, please come fast!!, ${jsonToUrlParams(sessionData)}`)
+          ShareMessage(
+            `Hey, where are you I am here, please come fast!!, ${jsonToUrlParams(
+              sessionData,
+            )}`,
+          );
         }}
         style={styles.webview}
         ref={webViewRef}
