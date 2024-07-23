@@ -18,6 +18,7 @@ import {useNavigation} from '@react-navigation/native';
 import {theme} from '../../theme';
 import Coffee from '../../components/Coffee';
 import {useAuth} from '../../utils/auth';
+import version from '../../utils/version.json'
 
 export default function AboutMe() {
   const navigation = useNavigation();
@@ -451,7 +452,7 @@ export default function AboutMe() {
                 fontSize: wp(4.0),
                 fontWeight: '500',
               }}>
-              Application Version : 1.0
+              Application Version : {version.app}
             </Text>
 
             <Text
@@ -462,7 +463,7 @@ export default function AboutMe() {
                 fontSize: wp(4.0),
                 fontWeight: '500',
               }}>
-              Engine Version : 2.0
+              Engine Version : {version.engine}
             </Text>
           </View>
 

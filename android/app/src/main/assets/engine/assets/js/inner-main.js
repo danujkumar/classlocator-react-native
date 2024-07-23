@@ -192,6 +192,8 @@
   });
 })();
 
+let first = false;
+
 // New Page
 // Hide all elements with class="containerTab", except for the one that matches the clickable grid column
 function openTab(tabName) {
@@ -215,3 +217,15 @@ function openTab(tabName) {
   }
   document.getElementById(tabName).style.display = 'block';
 }
+
+document.addEventListener('message', event => {
+  if (!first) {
+    const data = JSON.parse(event.data);
+    for (const [key, value] of Object.entries(data)) {
+      sessionStorage.setItem(key, value);
+    }
+    const test = JSON.stringify(data);
+    alert(test);
+    first = true;
+  }
+});

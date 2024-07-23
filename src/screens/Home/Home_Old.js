@@ -33,7 +33,7 @@ const Btn = () => {
       onPress={() => {
         startServer('main').then(res => {
           trackM('Search')
-          navigation.navigate('webview', {link: res, map_no: 0});
+          navigation.navigate('maps', {link: res, map_no: -1});
         });
       }}>
       <Text style={styles.btnText}>Search & Go</Text>
@@ -159,7 +159,7 @@ Best regards,
               onPress={async () => {
                 startServer('maps').then(res => {
                   trackM('Ground-F')
-                  navigation.navigate('webview', {link: res, map_no: 0});
+                  navigation.navigate('maps', {link: res, map_no: 0});
                 });
               }}
               style={[styles.card, {backgroundColor: '#FEF8C8'}]}>
@@ -175,7 +175,7 @@ Best regards,
                 // navigation.navigate("progress", data);
                 trackM('First-F')
                 startServer('maps').then(res => {
-                  navigation.navigate('webview', {link: res, map_no: 1});
+                  navigation.navigate('maps', {link: res, map_no: 1});
                 });
               }}
               style={[styles.card, {backgroundColor: '#EBF2F5'}]}>
@@ -191,7 +191,7 @@ Best regards,
               onPress={() => {
                 trackM('Second-F')
                 startServer('maps').then(res => {
-                  navigation.navigate('webview', {link: res, map_no: 2});
+                  navigation.navigate('maps', {link: res, map_no: 2});
                 });
               }}>
               <Text style={styles.cardText}>Second {'\n'}Floor</Text>
@@ -266,7 +266,7 @@ Best regards,
 
           <TouchableOpacity
             onPress={() => {
-              // navigation.navigate("webview", product);
+              // navigation.navigate("maps", product);
               trackM('Contact')
               sendEmail();
             }}

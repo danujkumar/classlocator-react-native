@@ -30,10 +30,10 @@ export default function AppNavigation() {
           },
           headerShown: false,
         }}
-        initialRouteName={"loader"}
+        initialRouteName={"main"}
       >
         <Stack.Screen name="loader" component={LoaderEffect} />
-        <Stack.Screen name="webview" component={Heartitout} />
+        <Stack.Screen name="maps" component={Heartitout} />
         <Stack.Screen name="main" component={RightDrawer} />
         
       </Stack.Navigator>
