@@ -102,18 +102,10 @@ export default function InitLoaderEffect({route}) {
   useEffect(() => {
     initializer()
       .then(() => {
-        if (route.params != null && route.params != undefined)
-        {
-          startServer('maps').then(res => {
-            trackM('Shared location');
-            navigation.navigate('maps', {link: res, map_no: 3, parameters:route.params});
-          });
-        }
-        else
-          navigation.navigate('main');
+          navigation.navigate('main', route.params);
       })
       .catch(err => {
-        navigation.navigate('main');
+        navigation.navigate('main', route.params);
         console.log(err);
       });
   });

@@ -16,8 +16,9 @@ import HomeIcon from '../../components/HomeIcon.js';
 import ProfileIcon from '../../components/Profile.js';
 import AboutMe from '../../screens/Profile/AboutMe.js';
 import PingCard from '../../components/PingCard.js';
-import { useAuth } from '../../utils/auth.js';
+import {useAuth} from '../../utils/auth.js';
 import PingCard2 from '../../components/PingCard2.js';
+import {useNavigation} from '@react-navigation/native';
 
 const screenOptions = {
   contentStyle: {
@@ -48,10 +49,25 @@ const screenOptions = {
   },
 };
 
-export default function BottomTabs() {
+export default function BottomTabs(props) {
+  // console.log(props.route.params);
   const Tab = createBottomTabNavigator();
-  const {close} = useAuth();
+  const {close, startServer, trackM} = useAuth();
   const {close2} = useAuth();
+  const navigation = useNavigation();
+  React.useEffect(() => {
+    if (props.route.params != null && props.route.params != undefined) {
+      startServer('maps').then(res => {
+        trackM('Shared location');
+        navigation.navigate('maps', {
+          link: res,
+          map_no: 3,
+          parameters: props.route.params,
+        });
+      });
+    }
+  }, []);
+
   return (
     <View
       style={{
@@ -59,7 +75,7 @@ export default function BottomTabs() {
         height: hp(104.1),
       }}>
       {close ? <PingCard /> : <></>}
-      {close2 ? <PingCard2/> : <></>}
+      {close2 ? <PingCard2 /> : <></>}
       <Tab.Navigator
         initialRouteName="Discover_Tab"
         screenOptions={screenOptions}>
