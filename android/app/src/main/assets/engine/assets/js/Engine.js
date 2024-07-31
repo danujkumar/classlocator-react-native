@@ -172,6 +172,7 @@ window.addEventListener("load", async () => {
     await butControl();
     setMap();
     A();
+    reload();
   } catch (error) {
     //Remember this is under try section, so for debugging always disable this try section first.
     console.log(error)
@@ -185,7 +186,6 @@ document.addEventListener('message', event => {
     for (const [key, value] of Object.entries(data)) {
       sessionStorage.setItem(key, value);
     }
-    const test = JSON.stringify(data);
     first = true;
     reload();
   }

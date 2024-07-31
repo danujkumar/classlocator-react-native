@@ -15,12 +15,9 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
 import {useAuth} from '../../utils/auth';
-import {useState} from 'react';
 import Share from 'react-native-share';
-
 import {theme} from '../../theme';
 import HomePageBanner from '../../components/HomePageBanner';
-import PingCard from '../../components/PingCard';
 
 const Btn = () => {
   const {startServer} = useAuth();
@@ -206,7 +203,7 @@ Best regards,
             onPress={() => {
               trackM('Shared')
               ShareMessage(
-                `Hey! 🚀 Check out the new and improved ClassLocator app! Find emergency services instantly, even offline. Download now from the Play Store and share with your friends and family, https://nitrr-class-locator.netlify.app/`,
+                `Hey! 🚀 Check out the new and improved ClassLocator app! Find emergency services instantly, even offline. Download now from the Play Store and share with your friends and family, https://play.google.com/store/apps/details?id=com.classlocator.nitrr`,
               );
             }}
             className="flex-col items-center"

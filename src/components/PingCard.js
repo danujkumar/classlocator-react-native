@@ -12,25 +12,24 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {theme} from '../theme';
-import { useAuth } from '../utils/auth';
+import {useAuth} from '../utils/auth';
 
 const B = props => <Text style={{fontWeight: '500'}}>{props.children}</Text>;
 
 const PingCard = () => {
   const {closeNow, close} = useAuth();
   return (
-    <View      
+    <View
       style={{
         width: wp(100),
         height: hp(104.2),
         position: 'absolute',
         zIndex: 5,
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: 'rgba(256, 256, 256, 0.5)',
-        display: close ? "flex" : "none"
+        display: close ? 'flex' : 'none',
       }}>
-
       <View
         style={{
           paddingVertical: hp(3.5),
@@ -41,9 +40,8 @@ const PingCard = () => {
           borderRadius: wp(8),
           paddingHorizontal: wp(4),
           alignItems: 'center',
-          borderWidth:hp(0.1),
+          borderWidth: hp(0.1),
           justifyContent: 'space-between',
-          
         }}>
         <Text
           style={{
@@ -55,25 +53,32 @@ const PingCard = () => {
           What's New in Classlocator 2.0!
         </Text>
         {/* <HomePing width={wp(22.66)} height={wp(20.32)} /> */}
-        <View style={{height: hp(38), width:wp(85), justifyContent: 'space-between' }}>
+        <View
+          style={{
+            height: hp(38),
+            width: wp(85),
+            justifyContent: 'space-between',
+          }}>
           <Text style={{fontSize: wp(4.2), color: 'black'}}>
-            <B>1. Classlocator 2.0:</B> Fully revamped with advanced features.
+            <B>1. Offline Mode:</B> Full functionality without an internet
+            connection.
           </Text>
           <Text style={{fontSize: wp(4.2), color: 'black'}}>
-            <B>2. Quick Actions:</B> Locate emergency services instantly on
+            <B>2. Share Location:</B> Easily share your current location with
+            others with just a tap!
+          </Text>
+          <Text style={{fontSize: wp(4.2), color: 'black'}}>
+            <B>3. Quick Actions:</B> Locate emergency services instantly on
             maps.
           </Text>
           <Text style={{fontSize: wp(4.2), color: 'black'}}>
-            <B>3. Open Source:</B> Contribute to ClassLocator's development.
+            <B>4. Open Source:</B> Contribute to ClassLocator's development.
           </Text>
           <Text style={{fontSize: wp(4.2), color: 'black'}}>
-            <B>4. Enhanced Contact Us:</B> Seamlessly register and connect
+            <B>5. Enhanced Contact Us:</B> Seamlessly connect and register
             concerns.
           </Text>
-          <Text style={{fontSize: wp(4.2), color: 'black'}}>
-            <B>5. Offline Mode:</B> Full functionality without an internet
-            connection.
-          </Text>
+
           <Text
             style={{
               fontSize: wp(4.2),
@@ -101,12 +106,12 @@ const PingCard = () => {
               flexDirection: 'row',
             },
           ]}
-          onPress={() => {closeNow(false)}}>
+          onPress={() => {
+            closeNow(false);
+          }}>
           <Text style={[{color: '#fff', fontSize: wp(5)}]}>Close</Text>
         </TouchableOpacity>
       </View>
-
-
     </View>
   );
 };
