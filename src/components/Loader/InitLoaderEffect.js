@@ -3,7 +3,6 @@ import {
   Text,
   Image,
   StyleSheet,
-  ToastAndroid,
   BackHandler,
 } from 'react-native';
 import React, {useEffect} from 'react';
@@ -15,18 +14,10 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {theme} from '../../theme';
 import RNFS from 'react-native-fs';
-import engine from '../../../android/app/src/main/assets/engine/release.json'
-import { compareVersions } from 'compare-versions';
-import { useAuth } from '../../utils/auth';
-
-const showToast = message => {
-  ToastAndroid.show(message, ToastAndroid.SHORT);
-};
 
 export default function InitLoaderEffect({route}) {
   const ASSETS_FOLDER_NAME = 'engine';
   const DOCUMENT_FOLDER_PATH = `${RNFS.CachesDirectoryPath}/${ASSETS_FOLDER_NAME}`;
-  const CURRENT_ENGINE_VERSION = engine.version;
 
   const navigation = useNavigation();
   const backHandler = () => {
@@ -34,7 +25,6 @@ export default function InitLoaderEffect({route}) {
     return true;
   };
 
-  const {startServer, trackM} = useAuth();
   navigation.addListener('focus', () => {
     BackHandler.addEventListener('hardwareBackPress', backHandler);
   });
@@ -42,35 +32,6 @@ export default function InitLoaderEffect({route}) {
   navigation.addListener('blur', () => {
     BackHandler.removeEventListener('hardwareBackPress', backHandler);
   });
-
-  const replaceEngine = async () => {
-    const targetExists = await RNFS.exists(DOCUMENT_FOLDER_PATH);
-    if (targetExists) {
-      await RNFS.unlink(DOCUMENT_FOLDER_PATH);
-      console.log(targetExists)
-    }
-    initializer();
-  };
-
-  const readVer = async () => {
-    try {
-      const path = DOCUMENT_FOLDER_PATH + '/release.json';
-      const fileExists = await RNFS.exists(path);
-      if (fileExists) {
-        const fileContent = await RNFS.readFile(path);
-        const jsonData = JSON.parse(fileContent);
-        
-        const status = compareVersions(CURRENT_ENGINE_VERSION, jsonData.version);
-        console.log(CURRENT_ENGINE_VERSION, jsonData.version, status, DOCUMENT_FOLDER_PATH);
-        if(status == -1 || status == 1) replaceEngine(); 
-      } else {
-        await replaceEngine();
-      }
-    } catch (error) {
-      console.log("from here: ",error)
-      await replaceEngine();
-    }
-  };
 
   const initializer = async () => {
     const copyAssetsFolderContents = async (sourcePath, targetPath) => {
