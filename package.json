@@ -18,8 +18,7 @@
     "react-native": "0.74.3",
     "react-native-fs": "^2.20.0",
     "react-native-heroicons": "^4.0.0",
-    "react-native-linear-gradient": "^2.8.3",
-    "react-native-network-info": "^5.2.1"
+    "react-native-linear-gradient": "^2.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
