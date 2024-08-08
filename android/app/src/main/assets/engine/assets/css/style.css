@@ -488,12 +488,7 @@ h6 {
   background-size: cover;
   position: relative;
   background-attachment: fixed;
-}
-
-@media (max-height: 800px) {
-  #hero {
-    height: 120vh;
-  }
+  overflow-y: scroll;
 }
 
 #hero .hero-text {
@@ -513,6 +508,11 @@ h6 {
   }
 }
 
+@media (max-width: 250px) {
+  #hero {
+    overflow-x: scroll;
+  }
+}
 
 #hero h2 {
   margin: 8vh 0 0 0;
