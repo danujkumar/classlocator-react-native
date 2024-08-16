@@ -79,7 +79,7 @@ android {
         applicationId "com.classlocator.nitrr"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
+        versionCode 8
         versionName "1.1.5"
     }
     signingConfigs {
