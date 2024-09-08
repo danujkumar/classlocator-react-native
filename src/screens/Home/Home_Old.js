@@ -54,7 +54,7 @@ const ShareMessage = text => {
 
 export default function HomeScreen() {
   const navigation = useNavigation();
-  const {startServer, closeNow, openLinks, trackM} = useAuth();
+  const {startServer, closeNow, openLinks, trackM, func, name} = useAuth();
   const backHandler = () => {
     BackHandler.exitApp();
     return true;

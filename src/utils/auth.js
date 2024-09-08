@@ -30,9 +30,15 @@ export const AuthProvider = ({children}) => {
   //   );
   // };
 
+  const [name, setName] = useState();
+
   const trackM = title => {
     mixpanel.track(title);
   };
+
+  const func = ()=>{
+    setName("test")
+  }
 
   const [close, setClose] = useState(false);
   const [close2, setClose2] = useState(false);
@@ -92,6 +98,8 @@ export const AuthProvider = ({children}) => {
         close2,
         closeNow2,
         trackM,
+        name,
+        func
       }}>
       {children}
     </AuthContext.Provider>
